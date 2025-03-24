@@ -1,4 +1,5 @@
 import os
+import sys
 import warnings
 from bisect import bisect_left
 
@@ -106,6 +107,7 @@ class MemMapDataset(Dataset):
         For each block of time (using t_events), find the start and
         end indices of the corresponding events
         """
+        print(range(len(self)))
         timeblock_indices = []
         start_idx = 0
         for i in range(len(self)):

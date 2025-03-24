@@ -3,6 +3,7 @@ import cv2
 import glob
 import argparse
 import yolov7
+import sys
 from tqdm import tqdm
 
 
@@ -20,6 +21,8 @@ def parse_arguments():
 def process_images(args):
     # Load the YOLOv7 model
     model = yolov7.load('yolov7.pt', device=args.device, trace=False)
+
+
     model.conf = args.conf_thres  # NMS confidence threshold
     model.iou = args.iou_thres  # NMS IoU threshold
     model.classes = None  # Optional: filter by class
@@ -32,32 +35,44 @@ def process_images(args):
     os.makedirs(boxes_path, exist_ok=True)
 
     # Load frame list
+    """
     with open('frame_list.txt', 'r') as f:
         frame_list = f.read().splitlines()
 
     # Process each image in the input directory
-    input_images = sorted(glob.glob(os.path.join(args.input, "*.png")))
     frame_list = [int(frame) for frame in frame_list]
+    """
+
+    input_images = sorted(glob.glob(os.path.join(args.input, "*.png")))
+    frame_list = list(range(0,len(input_images)-1))
+
     input_images = [input_images[i] for i in frame_list]
-    min_conf = 1.0
+    min_conf = 0.5
     for img_path in tqdm(input_images):
         frame_id = int(os.path.splitext(os.path.basename(img_path))[0].split('_')[-1])
         img = cv2.imread(img_path)
         results = model(img, size=args.img_size, augment=True)
+        
+
+
         detections = results.pred[0].cpu().numpy()  # Detections for the current image
+        names = results.names
+
 
         # Filter detections and draw on images
         for detection in detections:
             x1, y1, x2, y2, conf, cls_pred = map(float, detection[:6])
-            if conf < min_conf:
-                min_conf = conf
-            if cls_pred != 2:  # Assuming class id 2 is for cars
-                continue
-            label = 'car'
-            draw_detection(img, (x1, y1, x2, y2), label, conf)
+            if conf > min_conf:
+                draw_detection(img, (x1, y1, x2, y2), names[int(cls_pred)], conf)
+
+            #min_conf = conf
+            #if cls_pred != 2:  # Assuming class id 2 is for cars
+            #    continue
+            #label = 'car'
+            #draw_detection(img, (x1, y1, x2, y2), label, conf)
 
         # Save output images and detection boxes
-        cv2.imwrite(os.path.join(drawings_path, f"frame_{frame_id}.png"), img)
+        cv2.imwrite(os.path.join(drawings_path, f"frame_{str(frame_id).zfill(5)}.png"), img)
         save_detections(os.path.join(boxes_path, f"frame_{frame_id}.txt"), detections)
 
     print(f"Minimum confidence: {min_conf:.2f}")
@@ -69,8 +84,9 @@ def draw_detection(image, bbox, label, confidence):
     """
     bbox = list(map(int, bbox))
     x1, y1, x2, y2 = bbox
-    cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 2)
-    cv2.putText(image, f"{label}: {confidence:.2f}", (x1, y1 - 10), cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 2)
+    cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 1)
+    cv2.putText(image, f"{label}: {confidence:.2f}", (x1, y1 - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
 
 def save_detections(filepath, detections):

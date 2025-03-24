@@ -8,7 +8,7 @@
         },
         "keep_ratio": 1.0
     },
-    "save_images": false,
+    "save_images": true,
     "histeq": "none",
     "eval_infer_all": false,
     "ts_tol_ms": 1.0,

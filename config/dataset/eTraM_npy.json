@@ -1,0 +1,6 @@
+{
+    "root_path": "/data1/fdm/eTraM_npy",
+    "sequences": {
+        "train_h5_1": {}
+    }
+}

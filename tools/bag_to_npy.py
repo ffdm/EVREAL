@@ -1,4 +1,5 @@
 import os
+import sys
 import json
 import glob
 import argparse
@@ -53,6 +54,10 @@ def bag_to_npy(bag_path, output_pth, event_topic, image_topic):
     events_ts = np.array(ts)
     events_xy = np.array([xs, ys]).transpose()
     events_p = np.array(ps)
+    
+    print(events_xy.shape)
+    sys.exit()
+
     # assert np.all(events_ts[:-1] <= events_ts[1:])
 
     images = np.stack(image_list)

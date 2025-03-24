@@ -1,4 +1,4 @@
-cd data
+cd /data1/fdm/
 mkdir ECD
 cd ECD
 wget https://rpg.ifi.uzh.ch/datasets/davis/boxes_6dof.bag

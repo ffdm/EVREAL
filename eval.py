@@ -1,6 +1,7 @@
 import argparse
 import glob
 import os
+import sys
 import traceback
 from collections import OrderedDict
 
@@ -32,6 +33,7 @@ def get_eval_configs(eval_config_names):
         eval_config = read_json(eval_config_path)
         eval_config['name'] = eval_config_name
         eval_configs.append(eval_config)
+
     return eval_configs
 
 
@@ -49,6 +51,7 @@ def get_sequences(dataset_config, dataset_kwargs):
     dataset_kwargs.update(dataset_config.get('dataset_kwargs', {}))
     sequences = []
 
+
     if get_all_sequences:
         if has_subfolders:
             glob_pattern = os.path.join(dataset_root, '*', '*')
@@ -65,10 +68,16 @@ def get_sequences(dataset_config, dataset_kwargs):
     else:
         sequences_config = dataset_config.get('sequences', {})
 
+
+
     for sequence_name, sequence in tqdm(sequences_config.items()):
         sequence_path = sequence.get('sequence_path', os.path.join(dataset_root, sequence_name))
         sequence['name'] = sequence_name
+        #print(sequence_path)
+        #print(dataset_kwargs)
         dataset = MemMapDataset(sequence_path, **dataset_kwargs)
+        
+
         sequence['data_loader'] = DataLoader(dataset, pin_memory=True)
         min_t, max_t = dataset.get_min_max_t()
         if 'start_time_s' not in sequence:
@@ -200,7 +209,21 @@ def eval_method_on_sequence(dataset_name, eval_config, method_name, model, metho
     event_tensor_normalization = method_config.get('event_tensor_normalization', False)
     color = eval_config.get('color', False)
     idx = 0
+    
+    #print(type(sequence))
+    #print(type(data_loader))
+
+    #for k,v in sequence.items():
+    #    print(f"{k}: {v}")
+
+    #first = next(iter(data_loader))
+
+    #print(first.keys())
+    
+
+    print(f"Length of sequence: {len(data_loader)}")
     for idx, item in enumerate(tqdm(data_loader)):
+        
         if has_reference_frames:
             ref_frame = item['frame']
             ref_frame_ts = item['frame_timestamp'].item()
@@ -219,6 +242,12 @@ def eval_method_on_sequence(dataset_name, eval_config, method_name, model, metho
         else:
             event_rate = item['event_count'].item() / item['dt'].item()
         voxel = item['events']
+
+        #print(f"Index: {idx}")
+        #print(torch.min(voxel))
+        #if (torch.count_nonzero(voxel) > 0):
+        #    sys.exit() 
+
         if event_tensor_normalization:
             voxel = normalize_event_tensor(voxel)
         voxel = voxel.to(device)
@@ -430,9 +459,12 @@ def evaluate(method_names, eval_config_names=None, dataset_names=None, metrics=N
         metrics = ['mse', 'ssim', 'lpips']
     eval_configs = get_eval_configs(eval_config_names)
     dataset_configs = get_dataset_configs(dataset_names)
+
     for eval_config in eval_configs:
         dataset_kwargs = eval_config.get('dataset_kwargs', {})
         datasets = get_datasets(dataset_configs, dataset_kwargs)
+        
+
         eval_info_str = get_eval_info_str(eval_config, method_names, dataset_configs)
         print(color_progress("Started " + eval_info_str))
         config_all_metrics = []
