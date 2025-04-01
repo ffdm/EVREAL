@@ -73,7 +73,8 @@ def process_images(args):
 
         # Save output images and detection boxes
         cv2.imwrite(os.path.join(drawings_path, f"frame_{str(frame_id).zfill(5)}.png"), img)
-        save_detections(os.path.join(boxes_path, f"frame_{frame_id}.txt"), detections)
+        save_detections(os.path.join(boxes_path,
+                                     f"frame_{str(frame_id).zfill(5)}.txt"), detections)
 
     print(f"Minimum confidence: {min_conf:.2f}")
 
