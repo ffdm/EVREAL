@@ -74,7 +74,8 @@ def process_images(args):
         # Save output images and detection boxes
         cv2.imwrite(os.path.join(drawings_path, f"frame_{str(frame_id).zfill(5)}.png"), img)
         save_detections(os.path.join(boxes_path,
-                                     f"frame_{str(frame_id).zfill(5)}.txt"), detections)
+                                     f"frame_{str(frame_id).zfill(5)}.txt"),
+                        detections, names)
 
     print(f"Minimum confidence: {min_conf:.2f}")
 
@@ -90,7 +91,7 @@ def draw_detection(image, bbox, label, confidence):
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
 
-def save_detections(filepath, detections):
+def save_detections(filepath, detections, names):
     """
     Save detections to a text file.
     """
@@ -98,8 +99,8 @@ def save_detections(filepath, detections):
         for detection in detections:
             x1, y1, x2, y2 = map(int, detection[:4])
             conf, cls_pred = detection[4:6]
-            if int(cls_pred) != 2: continue  # Skip if not a car
-            f.write(f"car {conf} {x1} {y1} {x2} {y2}\n")
+            #if int(cls_pred) != 2: continue  # Skip if not a car
+            f.write(f"{names[int(cls_pred)]} {x1} {y1} {x2} {y2}\n")
 
 
 if __name__ == "__main__":
