@@ -1,0 +1,231 @@
+import h5py
+import cv2
+import numpy as np
+import numba
+import sys
+from tqdm import tqdm
+import torch
+import skimage.measure
+
+dataset_path = '/data1/fdm/eTraM/Static/HDF5/'
+scene_path = 'train_h5_1/'
+
+class EventList:
+    def init(self):
+        self.x = []
+        self.y = []
+        self.h = []
+        self.w = []
+        self.p = []
+        self.t = []
+        self.ann = []
+
+# PROGRAM FOR PREPROCESSING OF EVENTS AND
+# SAVING INTO BLOSC FILES FOR FAST TRAINING
+
+# Hyper params
+num_steps = 25
+batch_size = 256
+fps = 30
+names = ["pedestrian", "car", "bicycle", "bus", "motorbike", "truck", "tram",
+         "wheelchair"]
+
+def set(path, prefix, num, evlist):
+    ev_path = path+prefix+str(num).zfill(4)+'_td.h5'
+    ann_path = path+prefix+str(num).zfill(4)+'_bbox.npy'
+
+    f_ev = h5py.File(ev_path, 'r')
+    events = f_ev['events']
+    evlist.x = events['x'][()]
+    evlist.y = events['y'][()]
+    evlist.h = events['height'][()]
+    evlist.w = events['width'][()]
+    evlist.p = events['p'][()]
+    evlist.t = events['t'][()]
+
+    evlist.ann = np.load(ann_path)
+
+from bisect import bisect_left  
+# l is list
+def Binary_Search(l, x):
+    i = bisect_left(l, x)
+    if i:
+        return (i-1)
+    else:
+        return -1
+
+# Render events on image
+@numba.jit(nopython=True)
+def rei(image, x, y, p):
+    for x_, y_, p_ in zip(x,y,p):
+        if p_ == 0:
+            image[y_, x_] = np.array([0,0,255])
+        else:
+            image[y_, x_] = np.array([255,0,0])
+    return image
+
+def draw_detection(image, bbox, label):
+    """
+    Draw bounding box and label on the image.
+    """
+    bbox = list(map(int, bbox))
+    x1, y1, x2, y2 = bbox
+    cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 1)
+    cv2.putText(image, f"{label}", (x1, y1 - 10),
+                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
+
+def render_events_and_boxes(beg, end, evlist):
+    """
+    Beg and End of sequence in frames
+    """
+    ind = 0
+    ann_idx = 0
+    ti = beg*(1e6/fps)
+
+    # Set previous indices
+    ann_idx = Binary_Search(evlist.ann['t'], ti)
+    ind_p = Binary_Search(evlist.t, ti)
+    if ind_p == -1: ind_p = 0
+    if ann_idx == -1: ann_idx = 0
+
+    for i in range(beg, end):
+        black_image = np.zeros((evlist.h,evlist.w,3))
+        # Time in us to stop binning
+        ti += 1e6/fps
+
+        # Previous index
+        ind = Binary_Search(evlist.t, ti)
+
+        if (ind == -1): print("Ind not found")
+        else: print(ind)
+
+        # Ind is last index
+        frame = rei(black_image, evlist.x[ind_p:ind+1], evlist.y[ind_p:ind+1],
+                    evlist.p[ind_p:ind+1]).astype(np.uint8)
+        ind_p = ind
+
+        while (evlist.ann['t'][ann_idx] < ti):
+            x1 = evlist.ann['x'][ann_idx]
+            y1 = evlist.ann['y'][ann_idx]
+            x2 = x1 + evlist.ann['w'][ann_idx]
+            y2 = y1 + evlist.ann['h'][ann_idx]
+            draw_detection(frame, (x1, y1, x2, y2), names[evlist.ann['class_id'][ann_idx]])
+            ann_idx += 1
+            if ann_idx >= len(evlist.ann['t']): break
+
+        #cv2.imwrite(f"output/frame_{str(i).zfill(5)}.png", frame)
+        cv2.imshow("x", frame)
+        cv2.waitKey(0)
+
+# Process time bin for one h5 file
+# First, try saving entire file, to a file
+def time_bin(beg, end, ev):
+    # BEG and END are in frames
+    tn = beg*1e6/fps
+    ind = Binary_Search(ev.t, beg*1e6/fps)
+    ind_p = ind
+    ann_ind = Binary_Search(ev.ann['t'], tn)
+    ann_ind_p = ann_ind
+
+    print(f" LOADING {end-beg} DATA VECTORS ".center(50, "#"))
+    events = np.zeros((end-beg, num_steps, 2, ev.h, ev.w), dtype='b')
+    targets = np.zeros(end-beg, dtype='b')
+
+    for i in tqdm(range(beg, end)):
+        for n in range(num_steps):
+            # Max time in us for bin n
+            tn += 1e6/fps/num_steps
+            ind_p = ind
+            while(ev.t[ind] < tn):
+                ind += 1
+                if ind >= len(ev.t): break
+            x_bin = ev.x[ind_p:ind+1]
+            y_bin = ev.y[ind_p:ind+1]
+            p_bin = ev.p[ind_p:ind+1]
+            events[i-beg, n, p_bin, y_bin, x_bin] = 1
+        ann_ind = Binary_Search(ev.ann['t'], tn)
+        #print(f"ANN_IND: {ann_ind}")
+        #print(f"ANN_IND_P: {ann_ind_p}")
+        #print(f"GOAL T: {tn}")
+        #print(f"THE T: {ev.ann['t'][ann_ind]}")
+        if (ann_ind > ann_ind_p):
+            # Means there is a dection in frame
+            targets[i-beg] = 1
+        ann_ind_p = ann_ind
+    
+    return [events, targets]
+
+ev = EventList()
+path = dataset_path+scene_path
+prefix = 'train_day_'
+
+#render_events_and_boxes(0, 500, evlist)
+# Need to get the number of frames in thingy.
+# Just do t[-1]*fps/1e6
+# BLOSC TO THE RESCUEEEEE
+# FAST AND TAKES UP LIKE NO SPACE LETS GOO
+#set(path, prefix, 1, ev)
+#render_events_and_boxes(2950, 3000, ev)
+
+#beg = 100
+#events, targets = time_bin(beg, beg+batch_size, ev)
+
+import time
+import blosc2
+
+for j in range(1,21):
+    set(path, prefix, 1, ev)
+    num_frames = int(ev.t[-1]*fps/1e6) 
+    for i in range(0, num_frames-batch_size, batch_size):
+        batch_num = int(i/batch_size)
+        print(f"LOADING SCENE {j}, BATCH {batch_num}")
+        events, targets = time_bin(i, i+batch_size, ev)
+        events_outfile = path+'b2/'+prefix+str(j).zfill(4)+'_ev_b'+str(batch_num).zfill(2)+'.b2'
+        targets_outfile = path+'b2/'+prefix+str(j).zfill(4)+'_tg_b'+str(batch_num).zfill(2)+'.b2'
+        blosc2.save_array(events, events_outfile, mode='w')
+        blosc2.save_array(targets, targets_outfile, mode='w')
+        
+sys.exit()
+
+"""
+start = time.perf_counter()
+f = gzip.GzipFile(outfile+'.gz', "r")
+events = np.load(f)
+f.close()
+end = time.perf_counter()
+print(f"Gzip load time (just events): {end-start}")
+"""
+
+start = time.perf_counter()
+events = blosc2.load_array(events_outfile)
+targets = blosc2.load_array(targets_outfile)
+end = time.perf_counter()
+print(f"Blosc load time: {end-start}")
+print(events.shape)
+print(targets.shape)
+
+sys.exit()
+
+#np.save(f, events)
+#f.close()
+#np.savez(outfile, events, targets)
+
+sys.exit()
+#np.save(outfile, 
+
+def save_for_EVREAL():
+    events_ts_path = '../../../../eTraM_npy/train_h5_1/events_ts.npy' 
+    events_xy_path = '../../../../eTraM_npy/train_h5_1/events_xy.npy' 
+    events_p_path = '../../../../eTraM_npy/train_h5_1/events_p.npy' 
+    t_new = t / float(1e6)
+
+    xy = np.transpose(np.array([x,y]))
+    print(xy.shape)
+
+    np.save(events_ts_path, t, allow_pickle=False, fix_imports=False)
+    np.save(events_xy_path, xy, allow_pickle=False, fix_imports=False)
+    np.save(events_p_path, p, allow_pickle=False, fix_imports=False)
+
+
+
+
