@@ -1,2 +1,2 @@
-test:
-	python3 test.py
+prep:
+	python3 prep.py

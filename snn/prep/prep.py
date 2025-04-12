@@ -10,6 +10,10 @@ import skimage.measure
 dataset_path = '/data1/fdm/eTraM/Static/HDF5/'
 scene_path = 'train_h5_1/'
 
+test_series = ['test_h5_1', 'test_h5_2']
+train_series = ['train_h5_1', 'train_h5_2', 'train_h5_3', 'train_h5_4',
+                'train_h5_5']
+
 class EventList:
     def init(self):
         self.x = []
@@ -30,9 +34,9 @@ fps = 30
 names = ["pedestrian", "car", "bicycle", "bus", "motorbike", "truck", "tram",
          "wheelchair"]
 
-def set(path, prefix, num, evlist):
-    ev_path = path+prefix+str(num).zfill(4)+'_td.h5'
-    ann_path = path+prefix+str(num).zfill(4)+'_bbox.npy'
+def set(path, scene, evlist):
+    ev_path = path+scene+'_td.h5'
+    ann_path = path+scene+'_bbox.npy'
 
     f_ev = h5py.File(ev_path, 'r')
     events = f_ev['events']
@@ -157,7 +161,6 @@ def time_bin(beg, end, ev):
 
 ev = EventList()
 path = dataset_path+scene_path
-prefix = 'train_day_'
 
 #render_events_and_boxes(0, 500, evlist)
 # Need to get the number of frames in thingy.
@@ -172,19 +175,26 @@ prefix = 'train_day_'
 
 import time
 import blosc2
+import os
 
-for j in range(1,21):
-    set(path, prefix, 1, ev)
-    num_frames = int(ev.t[-1]*fps/1e6) 
-    for i in range(0, num_frames-batch_size, batch_size):
-        batch_num = int(i/batch_size)
-        print(f"LOADING SCENE {j}, BATCH {batch_num}")
-        events, targets = time_bin(i, i+batch_size, ev)
-        events_outfile = path+'b2/'+prefix+str(j).zfill(4)+'_ev_b'+str(batch_num).zfill(2)+'.b2'
-        targets_outfile = path+'b2/'+prefix+str(j).zfill(4)+'_tg_b'+str(batch_num).zfill(2)+'.b2'
-        blosc2.save_array(events, events_outfile, mode='w')
-        blosc2.save_array(targets, targets_outfile, mode='w')
-        
+#for j in range(1,21):
+for series in test_series:
+    path = dataset_path+series+'/'
+    for filename in os.listdir(path):
+        if filename.endswith('_td.h5'):
+            scene = filename.split('_td.h5')[0]
+            set(path, scene, ev)
+            os.makedirs(path+'b2/', exist_ok=True)
+            num_frames = int(ev.t[-1]*fps/1e6) 
+            for i in range(0, num_frames-batch_size, batch_size):
+                batch_num = int(i/batch_size)
+                print(f"LOADING SCENE {scene}, BATCH {batch_num}")
+                events, targets = time_bin(i, i+batch_size, ev)
+                events_outfile = path+'b2/'+scene+'_ev_b'+str(batch_num).zfill(2)+'.b2'
+                targets_outfile = path+'b2/'+scene+'_tg_b'+str(batch_num).zfill(2)+'.b2'
+                blosc2.save_array(events, events_outfile, mode='w')
+                blosc2.save_array(targets, targets_outfile, mode='w')
+            
 sys.exit()
 
 """

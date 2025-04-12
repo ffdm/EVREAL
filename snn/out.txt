@@ -1,0 +1,10 @@
+FINAL ACCURACY MEASURE
+############ RUNNING SERIES test_h5_1 ############
+########### RUNNING SCENE test_day_005 ###########
+-------------------- Batch 0 ---------------------
+############ RUNNING SERIES test_h5_2 ############
+########## RUNNING SCENE test_night_013 ##########
+-------------------- Batch 0 ---------------------
+Total correctly classified test set images: 507/512
+Test set Accuracy: 99.02%
+Final acc took 166.539120992 s
