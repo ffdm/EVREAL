@@ -145,32 +145,63 @@ def get_targets(path, prefix, bn):
 # and compare the neuron with the highest number of spikes
 # with the target
 
-def batch_accuracy(path, prefix, bn, net):
-  with torch.no_grad():
-    total = 0
-    acc = 0
-    index = 0
-    net.eval()
+def batch_accuracy():
+    total=0
+    correct=0
+    # set to 99 to do all of them
+    num_test_scenes = 2
+    num_batches = 2
 
-    test_data = get_events(path, prefix, bn)
-    test_targets = get_targets(path, prefix, bn).unsqueeze(1) 
+    with torch.no_grad():
+        total = 0
+        acc = 0
+        index = 0
+        net.eval()
+        for series in test_series:
 
-    minibatches = 16
-    # number of iters per minibatch
-    num = int(len(test_data)/minibatches)
-    for minibatch in range(minibatches):
-        start = minibatch*num
-        end = start + num
-        data = test_data[start:end].to(device)
-        targets = test_targets[start:end].type(torch.LongTensor)
-        targets = targets.to(device).squeeze(1)
+            path = data_path+series+'/'
 
-        spk_rec, _ = net(data)
+            test_scene_counter = 0
 
-        acc += SF.accuracy_rate(spk_rec, targets) * spk_rec.size(1)
-        total += spk_rec.size(1)
+            for scenefile in glob(path+'*_td.h5'):
+                scene = scenefile.replace(path, '').replace('_td.h5', '')
 
-  return acc/total
+                if test_scene_counter == num_test_scenes: break
+
+                batch_counter = 0
+
+                for batchfile in glob(path+'b2/'+scene+'_ev_b*.b2'):
+                    batch = batchfile.replace(path+'b2/', '').replace('.b2', '')
+                    batch = int(batch.replace(scene+'_ev_b', ''))
+
+                    if batch_counter == num_batches: break
+
+                    test_data = get_events(path, scene, batch)
+                    test_targets = get_targets(path, scene, batch).unsqueeze(1) 
+
+                    minibatches = 64
+                    # number of iters per minibatch
+                    num = int(len(test_data)/minibatches)
+
+                    for minibatch in range(minibatches):
+                        start = minibatch*num
+                        end = start + num
+                        data = test_data[start:end].to(device)
+                        targets = test_targets[start:end].type(torch.LongTensor)
+                        targets = targets.to(device).squeeze(1)
+
+                        spk_rec, _ = net(data)
+
+                        acc += SF.accuracy_rate(spk_rec, targets) * spk_rec.size(1)
+                        _, predicted = spk_rec.sum(dim=0).max(1)
+
+                        total += targets.size(0)
+                        correct += (predicted == targets).sum().item()
+
+                    batch_counter += 1
+                test_scene_counter += 1
+
+        return correct/total
 
 # Loss fn and optimizer
 
@@ -187,13 +218,13 @@ loss_fn = SF.ce_rate_loss()
 # Epochs
 num_scenes = 20
 #num_epochs = 10
-num_epochs = 1
+num_epochs = 2
 
 # Batches
 num_samples = 21
 max_train = 16
 #num_batches = 16
-num_batches = 1
+num_batches = 2
 
 # Batches per epoch (batches per scene)
 # Reserve 5 samples for test
@@ -207,7 +238,7 @@ def train(iter_counter):
     total = 0
 
     for series in train_series:
-        if (series != 'train_h5_1'): break
+        # if (series != 'train_h5_1'): break
         print(f" SERIES {series} ".center(50, "#"))
         path = data_path+series+'/'
 
@@ -231,6 +262,7 @@ def train(iter_counter):
                 if batch_counter == num_batches: break
 
                 print(f" Batch {batch_counter} ".center(50, "-"))
+                sys.stdout.flush()
 
                 train_data = get_events(path, scene, batch)
                 train_targets = get_targets(path, scene, batch).unsqueeze(1) 
@@ -247,7 +279,7 @@ def train(iter_counter):
                 total += batch_size
                 # print(f"Number of ones in batch: {int(ones)}/{batch_size}")
                 # minibatch training loop
-                minibatches = 16
+                minibatches = 8
                 # number of iters per minibatch
                 num = int(len(train_data)/minibatches)
 
@@ -280,13 +312,18 @@ def train(iter_counter):
 
             epoch_counter += 1
 
+            """
             with torch.no_grad():
                 net.eval()
                 test_batch = random.sample(range(max_train, num_samples), 1)[0]
-                test_acc = batch_accuracy(path, scene, test_batch, net)
+                print(f"Running batch accuracy")
+                sys.stdout.flush()
+                test_acc = batch_accuracy()
 
                 print(f"Test Acc: {test_acc * 100:.2f}%\n")
+                sys.stdout.flush()
                 test_acc_hist.append(test_acc.item())
+            """
 
     print(f"Total ones in training data: {ones}/{total}")
 
@@ -297,20 +334,24 @@ def train(iter_counter):
     plt.xlabel("iter")
     plt.savefig("loss.pdf")
     plt.clf()
+    """
     plt.plot(test_acc_hist)
     plt.legend("test accuracy")
     plt.xlabel("iter")
     plt.savefig("acc.pdf")
+    """
 
 def final_acc():
 
     total=0
     correct=0
-    num_test_scenes = 1
-    num_batches = 1
+    # set to 99 to do all of them
+    num_test_scenes = 3
+    num_batches = 3
 
     # FINAL ACCURACY MEASURE
     print("FINAL ACCURACY MEASURE")
+    sys.stdout.flush()
     with torch.no_grad():
         total = 0
         acc = 0
@@ -340,11 +381,12 @@ def final_acc():
                     if batch_counter == num_batches: break
 
                     print(f" Batch {batch_counter} ".center(50, "-"))
+                    sys.stdout.flush()
 
                     test_data = get_events(path, scene, batch)
                     test_targets = get_targets(path, scene, batch).unsqueeze(1) 
 
-                    minibatches = 16
+                    minibatches = 8
                     # number of iters per minibatch
                     num = int(len(test_data)/minibatches)
 

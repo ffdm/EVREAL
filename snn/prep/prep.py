@@ -29,7 +29,7 @@ class EventList:
 
 # Hyper params
 num_steps = 25
-batch_size = 256
+batch_size = 128
 fps = 30
 names = ["pedestrian", "car", "bicycle", "bus", "motorbike", "truck", "tram",
          "wheelchair"]
@@ -143,15 +143,14 @@ def time_bin(beg, end, ev):
             while(ev.t[ind] < tn):
                 ind += 1
                 if ind >= len(ev.t): break
-            x_bin = ev.x[ind_p:ind+1]
-            y_bin = ev.y[ind_p:ind+1]
-            p_bin = ev.p[ind_p:ind+1]
+            x_bin = np.clip(ev.x[ind_p:ind+1], a_min=0,
+                            a_max=(events.shape[4]-1))
+            y_bin = np.clip(ev.y[ind_p:ind+1], a_min=0,
+                            a_max=(events.shape[3]-1))
+            p_bin = np.clip(ev.p[ind_p:ind+1], a_min=0, a_max=1)
             events[i-beg, n, p_bin, y_bin, x_bin] = 1
+
         ann_ind = Binary_Search(ev.ann['t'], tn)
-        #print(f"ANN_IND: {ann_ind}")
-        #print(f"ANN_IND_P: {ann_ind_p}")
-        #print(f"GOAL T: {tn}")
-        #print(f"THE T: {ev.ann['t'][ann_ind]}")
         if (ann_ind > ann_ind_p):
             # Means there is a dection in frame
             targets[i-beg] = 1
@@ -178,8 +177,14 @@ import blosc2
 import os
 
 #for j in range(1,21):
-for series in test_series:
+for series in train_series:
     path = dataset_path+series+'/'
+    print(f" LOADING SERIES {series} ".center(50, "#"))
+    if series == 'train_h5_1': continue
+    if series == 'train_h5_2': continue
+    if series == 'train_h5_3': continue
+    if series == 'train_h5_4': continue
+
     for filename in os.listdir(path):
         if filename.endswith('_td.h5'):
             scene = filename.split('_td.h5')[0]
@@ -196,15 +201,6 @@ for series in test_series:
                 blosc2.save_array(targets, targets_outfile, mode='w')
             
 sys.exit()
-
-"""
-start = time.perf_counter()
-f = gzip.GzipFile(outfile+'.gz', "r")
-events = np.load(f)
-f.close()
-end = time.perf_counter()
-print(f"Gzip load time (just events): {end-start}")
-"""
 
 start = time.perf_counter()
 events = blosc2.load_array(events_outfile)
