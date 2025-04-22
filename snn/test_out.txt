@@ -1,0 +1,8570 @@
+########### LOADING SERIES train_h5_1 ############
+########### LOADING SERIES train_h5_2 ############
+LOADING SCENE train_day_0029, BATCH 0
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+0
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+LOADING SCENE train_day_0029, BATCH 1
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+LOADING SCENE train_day_0029, BATCH 2
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+LOADING SCENE train_day_0029, BATCH 3
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+LOADING SCENE train_day_0029, BATCH 4
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+LOADING SCENE train_day_0029, BATCH 5
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+LOADING SCENE train_day_0029, BATCH 6
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+3
+car
+pedestrian
+car
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+LOADING SCENE train_day_0029, BATCH 7
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+4
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+LOADING SCENE train_day_0029, BATCH 8
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+car
+pedestrian
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+LOADING SCENE train_day_0029, BATCH 9
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+6
+pedestrian
+pedestrian
+car
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+LOADING SCENE train_day_0029, BATCH 10
+############ LOADING 128 DATA VECTORS ############
+(25, 2, 720, 1280)
+(720, 1280, 3)
+5
+pedestrian
+pedestrian
+pedestrian
+car
+pedestrian
+(25, 2, 720, 1280)
+(720, 1280, 3)

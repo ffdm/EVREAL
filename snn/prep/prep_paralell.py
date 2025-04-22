@@ -7,8 +7,6 @@ from tqdm import tqdm
 import torch
 import skimage.measure
 
-sys.settrace
-
 dataset_path = '/data1/fdm/eTraM/Static/HDF5/'
 scene_path = 'train_h5_1/'
 
@@ -157,30 +155,6 @@ def render_events_and_boxes(beg, end, evlist):
         cv2.imshow("x", frame)
         cv2.waitKey(0)
 
-def target_bin(beg, end, ev):
-    tn = beg*1e6/fps
-    ann_ind = Binary_Search(ev.ann['t'], tn)
-    if ann_ind == -1: ann_ind = 0
-    ann_ind_p = ann_ind
-
-    print(f" LOADING {end-beg} TARGETS ".center(50, "#"))
-    targets = np.empty(end-beg, dtype=object) 
-
-    for i in tqdm(range(beg, end)):
-        targets[i-beg] = np.array([], dtype=ev.ann.dtype)
-
-        for n in range(num_steps):
-            # Max time in us for bin n
-            tn += 1e6/fps/num_steps
-
-        ann_ind = Binary_Search(ev.ann['t'], tn)
-        if ann_ind == -1: ann_ind = 0
-        if (ann_ind > ann_ind_p):
-            targets[i-beg] = ev.ann[ann_ind_p:ann_ind]
-        ann_ind_p = ann_ind
-    
-    return targets
-
 # Process time bin for one h5 file
 # First, try saving entire file, to a file
 def time_bin(beg, end, ev):
@@ -208,33 +182,20 @@ def time_bin(beg, end, ev):
             while(ev.t[ind] < tn):
                 ind += 1
                 if ind >= len(ev.t): break
-            x_bin = np.clip(ev.x[ind_p:ind], a_min=0,
+            x_bin = np.clip(ev.x[ind_p:ind+1], a_min=0,
                             a_max=(events.shape[4]-1))
-            y_bin = np.clip(ev.y[ind_p:ind], a_min=0,
+            y_bin = np.clip(ev.y[ind_p:ind+1], a_min=0,
                             a_max=(events.shape[3]-1))
-            p_bin = np.clip(ev.p[ind_p:ind], a_min=0, a_max=1)
+            p_bin = np.clip(ev.p[ind_p:ind+1], a_min=0, a_max=1)
             events[i-beg, n, p_bin, y_bin, x_bin] = 1
 
         ann_ind = Binary_Search(ev.ann['t'], tn)
         if ann_ind == -1: ann_ind = 0
         if (ann_ind > ann_ind_p):
-            targets[i-beg] = ev.ann[ann_ind_p:ann_ind]
-            """
-            ann = (np.array([ev.ann['x'][ann_ind_p:ann_ind+1],
-                          ev.ann['y'][ann_ind_p:ann_ind+1],
-                          ev.ann['w'][ann_ind_p:ann_ind+1],
-                          ev.ann['h'][ann_ind_p:ann_ind+1],
-                          ev.ann['class_id'][ann_ind_p:ann_ind+1],
-                          ev.ann['track_id'][ann_ind_p:ann_ind+1],
-                          ev.ann['class_confidence'][ann_ind_p:ann_ind+1]],
-                                    dtype=np.float32))
-        else:
-            ann = np.array([-1,-1,-1,-1,-1,-1,-1],dtype=np.float32) 
-        targets.append(ann)
-            """
+            targets[i-beg] = ev.ann[ann_ind_p:ann_ind+1]
+
         ann_ind_p = ann_ind
     
-    #return [events, np.array(targets)]
     return [events, targets]
 
 ev = EventList()
@@ -256,11 +217,10 @@ import blosc2
 import os
 
 #for j in range(1,21):
-for series in train_series:
+for series in test_series:
     path = dataset_path+series+'/'
     print(f" LOADING SERIES {series} ".center(50, "#"))
     #if series == 'train_h5_5': continue
-    #if series == 'test_h5_1': continue
 
     for filename in os.listdir(path):
         if filename.endswith('_td.h5'):
@@ -271,35 +231,12 @@ for series in train_series:
             for i in range(0, num_frames-batch_size, batch_size):
                 batch_num = int(i/batch_size)
                 print(f"LOADING SCENE {scene}, BATCH {batch_num}")
-                #events, targets = time_bin(i, i+batch_size, ev)
-                targets = target_bin(i, i+batch_size, ev)
-                #render(events, targets)
-
-                
-
-                #events_outfile = path+'b2/'+scene+'_ev_b'+str(batch_num).zfill(2)+'.b2'
-                targets_outfile = path+'b2/'+scene+'_tg_b'+str(batch_num).zfill(2)+'.npy'
-
-                #blosc2.save_tensor(events, events_outfile, mode='w')
-                #blosc2.save_tensor(targets, targets_outfile, mode='w')
-                np.save(targets_outfile, targets)
+                events, targets = time_bin(i, i+batch_size, ev)
+                events_outfile = path+'b2/'+scene+'_ev_b'+str(batch_num).zfill(2)+'.b2'
+                targets_outfile = path+'b2/'+scene+'_tg_b'+str(batch_num).zfill(2)+'.b2'
+                blosc2.save_array(events, events_outfile, mode='w')
+                blosc2.save_array(targets, targets_outfile, mode='w')
             
-                #print(events_outfile)
-                #print(targets_outfile)
-                #events_load = blosc2.load_tensor(events_outfile)
-
-                #targets_load = blosc2.load_tensor(targets_outfile)
-                #tp_load = blosc2.load_tensor(targets_outfile)
-                #targets_load = blosc2.unpack_tensor(tp_load)
-                #targets_load = np.load(targets_outfile, allow_pickle=True)
-
-                #print(targets_load[0].shape)
-                #print(targets_load[0].dtype)
-
-                # print(events_load)
-                # print(targets_load)
-                #if batch_num == 7: sys.exit()
-
 sys.exit()
 
 start = time.perf_counter()
