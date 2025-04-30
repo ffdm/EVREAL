@@ -21,6 +21,9 @@ import blosc2
 from glob import glob
 import os
 
+import functools
+print = functools.partial(print, flush=True)
+
 
 # dataloader arguments
 # FIXED AT 256 FOR BLOSC INPUTS
@@ -52,6 +55,15 @@ num_steps = 25
 beta = 0.95
 
 spike_grad = surrogate.atan()
+
+# Global vars for target gen
+total_iou = 0
+total_seen = 0
+dropped = 0
+min_seen_iou = 1
+
+# IOU threshold to send
+min_iou = 1
 
 # Define Network
 class Net(nn.Module):
@@ -152,6 +164,46 @@ def draw_detection(image, bbox, label):
     cv2.putText(image, f"{label}", (x1, y1 - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
+def draw_bbox_array(image, bbox, label):
+    """
+    Draw bounding box and label on the image.
+    """
+    print(bbox.shape) 
+    print(label)
+    print(bbox)
+    for i, box in enumerate(bbox):
+        x1, y1, x2, y2 = box
+
+        x1 = int(x1)
+        y1 = int(y1)
+        x2 = int(x2)
+        y2 = int(y2)
+
+        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 255, 255), 1)
+        if type(label) is not str:
+            # MEANS NOT SENT
+            cv2.putText(image, f"IoU: {label[i]:.2f}", (x2 - 80, y2 + 17),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        elif label == 'send':
+            cv2.putText(image, f"IoU: 1.00", (x2 - 75, y2 + 17),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+
+def draw_send(image, send):
+    """
+    image: Image to draw
+    send: Boolean for if to send or not
+    """
+    h = image.shape[0]
+    w = image.shape[1]
+    if send:
+        cv2.rectangle(image, (0,0), (w, h), (0,255,0), 5)
+        cv2.putText(image, "Sent", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    else:
+        cv2.rectangle(image, (0,0), (w, h), (0,0,255), 5)
+        cv2.putText(image, "Skipped", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
+
 def render(events, targets):
     for i, event_frame in enumerate(events):
         render_frame(event_frame, targets[i])
@@ -159,6 +211,24 @@ def render(events, targets):
 def render_frame(events, targets):
     black_image = np.zeros((events.shape[2], events.shape[3], 3))
     frame = rei_frame(black_image, events)
+
+    for ann in targets:
+        x1 = ann['x']
+        y1 = ann['y']
+        x2 = x1 + ann['w']
+        y2 = y1 + ann['h']
+        label = f"{ann['class_confidence']:.2f}: {objects[ann['class_id']]}"
+        draw_detection(frame, (x1, y1, x2, y2), label)
+
+    cv2.imshow("Frame", frame)
+    cv2.waitKey(0)
+
+def render_frame_on_image(events, targets, image):
+
+    print(events.shape)
+    print(image.shape)
+
+    frame = rei_frame(image, events)
 
     for ann in targets:
         x1 = ann['x']
@@ -202,7 +272,7 @@ def bbox_iou(boxA, boxB):
   return iou
 
 
-def match_bboxes(bbox_gt, bbox_pred, IOU_THRESH=0.5):
+def match_bboxes(bbox_gt, bbox_pred, IOU_THRESH=0):
     '''
     Given sets of true and predicted bounding-boxes,
     determine the best possible match.
@@ -265,12 +335,6 @@ def get_events(path, prefix, bn):
     events = blosc2.load_array(path+'b2/'+prefix+'_ev_b'+str(bn).zfill(2)+'.b2')
     return torch.Tensor(events)
 
-# MOVE THIS IN A BIT
-total_iou = 0
-total_seen = 0
-dropped = 0
-min_seen_iou = 1
-min_iou = 0.90
 
 def get_targets(path, prefix, bn):
     global total_iou
@@ -282,7 +346,74 @@ def get_targets(path, prefix, bn):
     anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
                     allow_pickle=True)
 
-    # render_frame(get_events(path, prefix, bn)[15], anns[15])
+    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
+    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
+
+    for i, ann in enumerate(anns):
+       
+        total_seen += 1
+
+        ## ONLY DETECT OBJECT OR NOT FOR DEBUGGING
+        if len(ann) > 0:
+            targets[i] = 1
+
+        continue
+
+        ## ... might need a recurrent model otherwise ...
+        ## and what should I do on the first input of the batch?
+
+        if len(ann_p) != len(ann) or i == 0:
+
+            # SNN Sends if # anns change or first frame
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+            continue
+
+        x1_p = ann_p['x']
+        y1_p = ann_p['y']
+        x2_p = x1_p + ann_p['w']
+        y2_p = y1_p + ann_p['h']
+        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+        x1 = ann['x']
+        y1 = ann['y']
+        x2 = x1 + ann['w']
+        y2 = y1 + ann['h']
+        bbox = np.column_stack((x1, y1, x2, y2))
+
+        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+        if len(ious) > 0: iou_min = np.min(ious)
+        else: 
+            iou_min = min_seen_iou
+
+        if iou_min < min_iou or len(ious) < len(ann):
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+        else:
+            total_iou += iou_min
+            dropped += 1
+
+            if (min_seen_iou > iou_min):
+                min_seen_iou = iou_min
+
+    return torch.Tensor(targets)
+
+
+def get_targets_visual(path, prefix, bn):
+    global total_iou
+    global total_seen
+    global dropped
+    global min_seen_iou
+    targets = np.zeros(batch_size)
+
+    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
+                    allow_pickle=True)
+    events = get_events(path, prefix, bn)
 
     # TARGET GENERATION METHODOLOGY
     # FIRST IMAGE ALWAYS IS MARKED AS A 1 to encourage SNN to send more
@@ -295,26 +426,16 @@ def get_targets(path, prefix, bn):
     ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
 
     for i, ann in enumerate(anns):
-        if len(ann) == 0: continue
-
         total_seen += 1
-        #print("".center(50,'#'))
-        #print(f"X: {ann['x']}, Y: {ann['y']}")
-        #print(f"PX: {ann_p['x']}, PY: {ann_p['y']}")
 
-        #print(ann_p['x'])
-        #print(ann['x'])
-        if len(ann_p) != len(ann) or ann_p['x'][0] == -1:
-            targets[i] = 1
-            ann_p = ann
-            total_iou += 1
-            #print("IOU: 1")
-            continue
-        
-        #xdiff = np.max(np.abs(ann['x']-ann_p['x']))
-        #ydiff = np.max(np.abs(ann['y']-ann_p['y']))
+        # black image
+        image = np.zeros((events.shape[3], events.shape[4], 3)) 
 
-        #diff = xdiff+ydiff
+        x1_p = ann_p['x']
+        y1_p = ann_p['y']
+        x2_p = x1_p + ann_p['w']
+        y2_p = y1_p + ann_p['h']
+        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
 
         x1 = ann['x']
         y1 = ann['y']
@@ -322,42 +443,59 @@ def get_targets(path, prefix, bn):
         y2 = y1 + ann['h']
         bbox = np.column_stack((x1, y1, x2, y2))
 
-        x1_p = ann_p['x']
-        y1_p = ann_p['y']
-        x2_p = x1_p + ann_p['w']
-        y2_p = y1_p + ann_p['h']
-        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
-        
-        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
-        #print(ious)
-        if len(ious) > 0: iou_min = np.min(ious)
-        else: iou_min = min_seen_iou
+        if len(ann_p) != len(ann) or i == 0:
 
-        if iou_min < min_iou:
+            # SNN Sends if # anns change or first frame
             targets[i] = 1
             ann_p = ann
             total_iou += 1
-            #print("IOU: 1")
+
+            draw_bbox_array(image, bbox, 'send')
+            draw_send(image, 1)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            render_frame_on_image(events[i], ann, image) 
+
+            continue
+
+        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+        if len(ious) > 0: iou_min = np.min(ious)
+        else: 
+            iou_min = min_seen_iou
+
+        if iou_min < min_iou or len(ious) < len(ann):
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+            draw_bbox_array(image, bbox, 'send')
+            draw_send(image, 1)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
         else:
             total_iou += iou_min
             dropped += 1
-            #print(f"IOU: {iou_min}")
+
+            draw_bbox_array(image, bbox_p, ious)
+            draw_send(image, 0)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
             if (min_seen_iou > iou_min):
                 min_seen_iou = iou_min
 
-        """
-        if diff > bb_delta:
-            targets[i] = 1
-            ann_p = ann
-        """
-    
+        render_frame_on_image(events[i], ann, image) 
+
     return torch.Tensor(targets)
-
-# 10 train, 5 test batches for now
-
-# pass data into the network, sum the spikes over time
-# and compare the neuron with the highest number of spikes
-# with the target
 
 def iterate_through():
     for series in test_series:
@@ -365,108 +503,43 @@ def iterate_through():
 
         test_scene_counter = 0
 
+        print(f"Series: {series}")
+
         for scenefile in glob(path+'*_td.h5'):
             scene = scenefile.replace(path, '').replace('_td.h5', '')
 
             batch_counter = 0
 
-            for batchfile in glob(path+'b2/'+scene+'_ev_b*.b2'):
-                batch = batchfile.replace(path+'b2/', '').replace('.b2', '')
-                batch = int(batch.replace(scene+'_ev_b', ''))
+            for batchfile in glob(path+'b2/'+scene+'_tg_b*.npy'):
+                batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
+                batch = int(batch.replace(scene+'_tg_b', ''))
 
                 #test_data = get_events(path, scene, batch)
                 test_targets = get_targets(path, scene, batch).unsqueeze(1) 
-                #test_targets = get_targets(path, scene, batch)
-                print(f"Avg IOU: {total_iou/total_seen}, lowest IOU: {min_seen_iou}")
-                print(f"dropped: {dropped}/{total_seen}={dropped/total_seen:.4f}")
 
                 batch_counter += 1
             test_scene_counter += 1
 
-
-
-
-
-def batch_accuracy():
-    total=0
-    correct=0
-    # set to 99 to do all of them
-    num_test_scenes = 2
-    num_batches = 2
-
-    with torch.no_grad():
-        total = 0
-        acc = 0
-        index = 0
-        net.eval()
-        for series in test_series:
-
-            path = data_path+series+'/'
-
-            test_scene_counter = 0
-
-            for scenefile in glob(path+'*_td.h5'):
-                scene = scenefile.replace(path, '').replace('_td.h5', '')
-
-                if test_scene_counter == num_test_scenes: break
-
-                batch_counter = 0
-
-                for batchfile in glob(path+'b2/'+scene+'_ev_b*.b2'):
-                    batch = batchfile.replace(path+'b2/', '').replace('.b2', '')
-                    batch = int(batch.replace(scene+'_ev_b', ''))
-
-                    if batch_counter == num_batches: break
-
-                    test_data = get_events(path, scene, batch)
-                    test_targets = get_targets(path, scene, batch).unsqueeze(1) 
-
-                    minibatches = 64
-                    # number of iters per minibatch
-                    num = int(len(test_data)/minibatches)
-
-                    for minibatch in range(minibatches):
-                        start = minibatch*num
-                        end = start + num
-                        data = test_data[start:end].to(device)
-                        targets = test_targets[start:end].type(torch.LongTensor)
-                        targets = targets.to(device).squeeze(1)
-
-                        spk_rec, _ = net(data)
-
-                        acc += SF.accuracy_rate(spk_rec, targets) * spk_rec.size(1)
-                        _, predicted = spk_rec.sum(dim=0).max(1)
-
-                        total += targets.size(0)
-                        correct += (predicted == targets).sum().item()
-
-                    batch_counter += 1
-                test_scene_counter += 1
-
-        return correct/total
+        print(f"Avg IOU: {total_iou/total_seen}, lowest IOU: {min_seen_iou}")
+        print(f"dropped: {dropped}/{total_seen}={dropped/total_seen:.4f}")
 
 # Loss fn and optimizer
 
-#loss = nn.CrossEntropyLoss()
-optimizer = torch.optim.Adam(net.parameters(), lr=2e-5, betas=(0.9, 0.999))
+#optimizer = torch.optim.Adam(net.parameters(), lr=1e-5, betas=(0.9, 0.999))
+optimizer = torch.optim.Adam(net.parameters(), lr=2e-4, betas=(0.9, 0.999))
 
-# loss = SF.mse_count_loss()
 loss_fn = SF.ce_rate_loss()
-# optimizer = torch.optim.Adam(net.parameters(), lr=2e-2, betas=(0.9, 0.999))
-
-#train_data = to_frame(50).to(device)
-#train_targets = get_targets(50).to(device)
+#loss_fn = SF.ce_count_loss()
 
 # Epochs
-num_scenes = 20
-#num_epochs = 10
-num_epochs = 10
+num_epochs = 5
 
 # Batches
 num_samples = 21
 max_train = 16
+
 #num_batches = 16
-num_batches = 10
+num_batches = 5
 
 # Batches per epoch (batches per scene)
 # Reserve 5 samples for test
@@ -485,26 +558,25 @@ def train(iter_counter):
         path = data_path+series+'/'
 
         epoch_counter = 0
-
-        for scenefile in glob(path+'*_td.h5'):
-            scene = scenefile.replace(path, '').replace('_td.h5', '')
-            
+        
+        scenefiles = glob(path+'*_td.h5')
+        random.shuffle(scenefiles)
+        for scenefile in scenefiles:
             if epoch_counter == num_epochs: break
 
+            scene = scenefile.replace(path, '').replace('_td.h5', '')
             print(f" SCENE {scene} ".center(50, "#"))
-            sys.stdout.flush()
 
             batch_counter = 0
-            # Random sample batch from each scene
-            batch_list = random.sample(range(max_train), num_batches)
-            for batchfile in glob(path+'b2/'+scene+'_ev_b*.b2'):
-                batch = batchfile.replace(path+'b2/', '').replace('.b2', '')
-                batch = int(batch.replace(scene+'_ev_b', ''))
 
+            batchfiles = glob(path+'b2/'+scene+'_tg_b*.npy')
+            random.shuffle(batchfiles)
+            for batchfile in batchfiles:
                 if batch_counter == num_batches: break
 
-                print(f" Batch {batch_counter} ".center(50, "-"))
-                sys.stdout.flush()
+                batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
+                batch = int(batch.replace(scene+'_tg_b', ''))
+                print(f" Batch {batch_counter} ({batch}) ".center(50, "-"))
 
                 train_data = get_events(path, scene, batch)
                 train_targets = get_targets(path, scene, batch).unsqueeze(1) 
@@ -516,16 +588,15 @@ def train(iter_counter):
                 train_targets = train_targets[indexes]
                 """
                 
-                # Count number of ones within batch
-                ones += int(torch.sum(train_targets, dim=0))
                 total += batch_size
-                # print(f"Number of ones in batch: {int(ones)}/{batch_size}")
+
                 # minibatch training loop
-                minibatches = 8
+                minibatches = 2
                 # number of iters per minibatch
                 num = int(len(train_data)/minibatches)
 
                 for minibatch in range(minibatches):
+                    ones = 0
                     start = minibatch*num
                     end = start + num
                     data = train_data[start:end].to(device)
@@ -536,9 +607,32 @@ def train(iter_counter):
                     net.train()
                     spk_rec, mem_rec = net(data)
 
+
                     # loss
                     loss_val = loss_fn(spk_rec, targets)
                     _, idx = spk_rec.sum(dim=0).max(1)
+
+                    print(targets.shape)  
+                    print(spk_rec.shape)  
+                    print(spk_rec.sum(dim=0)[0])
+                    print(targets[0])
+
+                    """
+                    log_softmax_fn = nn.LogSoftmax(dim=-1)
+                    loss_fn_nll = nn.NLLLoss()
+                    log_p_y = log_softmax_fn(spk_rec)
+                    print(f"log_p_y: {log_p_y}")
+                    print(f"log_p_y shape: {log_p_y.shape}")
+                    print(f"output fn nll: {loss_fn_nll(log_p_y[0], targets)}")
+                    print(f"output fn nll shape: {loss_fn_nll(log_p_y[0],targets).shape}")
+
+                    loss = torch.zeros(1, device=device)
+                    for step in range(num_steps):
+                        loss += loss_fn_nll(log_p_y[step], targets)
+
+                    print(f"avg loss over num steps: {loss/num_steps}")
+                    """
+
 
                     # grad calc + weight update
                     optimizer.zero_grad()
@@ -548,24 +642,21 @@ def train(iter_counter):
                     # store loss history for plotting
                     loss_hist.append(loss_val.item())
 
+                    # minibatch accuracy (before weight update)
+                    acc = np.mean((targets == idx).detach().cpu().numpy())
+                    test_acc_hist.append(acc)
+                    print(f"Minibatch accuracy: {100*acc:.2f}%")
+                    print(f"Minibatch loss: {loss_val.item():.2f}")
+
+                    # Count number of ones within minibatch
+                    ones += int(torch.sum(targets, dim=0))
+                    print(f"Percent of ones in minibatch: {100*ones/num:.2f}%")
+
                     iter_counter += 1
 
                 batch_counter += 1
 
             epoch_counter += 1
-
-            """
-            with torch.no_grad():
-                net.eval()
-                test_batch = random.sample(range(max_train, num_samples), 1)[0]
-                print(f"Running batch accuracy")
-                sys.stdout.flush()
-                test_acc = batch_accuracy()
-
-                print(f"Test Acc: {test_acc * 100:.2f}%\n")
-                sys.stdout.flush()
-                test_acc_hist.append(test_acc.item())
-            """
 
     print(f"Total ones in training data: {ones}/{total}")
 
@@ -576,28 +667,27 @@ def train(iter_counter):
     plt.xlabel("iter")
     plt.savefig("loss.pdf")
     plt.clf()
-    """
     plt.plot(test_acc_hist)
     plt.legend("test accuracy")
     plt.xlabel("iter")
     plt.savefig("acc.pdf")
-    """
 
 def final_acc():
 
     total=0
     correct=0
+
     # set to 99 to do all of them
-    num_test_scenes = 10
-    num_batches = 10
+    num_test_scenes = 5
+    num_batches = 5
 
     # FINAL ACCURACY MEASURE
     print("FINAL ACCURACY MEASURE")
-    sys.stdout.flush()
     with torch.no_grad():
         total = 0
         acc = 0
         index = 0
+        ones = 0
         net.eval()
         for series in test_series:
             print(f" RUNNING SERIES {series} ".center(50, "#"))
@@ -605,30 +695,32 @@ def final_acc():
 
             test_scene_counter = 0
 
-            for scenefile in glob(path+'*_td.h5'):
+            scenefiles = glob(path+'*_td.h5')
+            random.shuffle(scenefiles)
+            for scenefile in scenefiles:
                 scene = scenefile.replace(path, '').replace('_td.h5', '')
 
                 if test_scene_counter == num_test_scenes: break
 
                 print(f" RUNNING SCENE {scene} ".center(50, "#"))
-                sys.stdout.flush()
 
                 batch_counter = 0
-                batch_list = random.sample(range(max_train, num_samples),4)
 
-                for batchfile in glob(path+'b2/'+scene+'_ev_b*.b2'):
-                    batch = batchfile.replace(path+'b2/', '').replace('.b2', '')
-                    batch = int(batch.replace(scene+'_ev_b', ''))
-
+                batchfiles = glob(path+'b2/'+scene+'_tg_b*.npy')
+                random.shuffle(batchfiles)
+                for batchfile in batchfiles:
                     if batch_counter == num_batches: break
 
+                    batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
+                    batch = int(batch.replace(scene+'_tg_b', ''))
                     print(f" Batch {batch_counter} ".center(50, "-"))
-                    sys.stdout.flush()
 
                     test_data = get_events(path, scene, batch)
                     test_targets = get_targets(path, scene, batch).unsqueeze(1) 
 
-                    minibatches = 8
+                    ones += int(torch.sum(test_targets, dim=0))
+
+                    minibatches = 2
                     # number of iters per minibatch
                     num = int(len(test_data)/minibatches)
 
@@ -640,8 +732,6 @@ def final_acc():
                         targets = targets.to(device).squeeze(1)
 
                         spk_rec, _ = net(data)
-
-                        acc += SF.accuracy_rate(spk_rec, targets) * spk_rec.size(1)
                         _, predicted = spk_rec.sum(dim=0).max(1)
 
                         total += targets.size(0)
@@ -649,23 +739,22 @@ def final_acc():
 
                     batch_counter += 1
                 test_scene_counter += 1
+
         print(f"Total correctly classified test set images: {correct}/{total}")
         print(f"Test set Accuracy: {100 * correct / total:.2f}%")
+        print(f"Total ones in test set: {ones}")
 
-#t = time.process_time()
+start = time.time()
 train(counter)
-iterate_through()
-#elapsed = time.process_time() - t
-#print(f"Training loop took {elapsed} s")
+#iterate_through()
+end = time.time()
+print(f"Training loop took {end-start:.2f} s")
 
 # Save network weights
-#torch.save(net.state_dict(), 'snn.pt')
+torch.save(net.state_dict(), 'snn.pt')
+start = time.time()
+final_acc()
+end = time.time()
+print(f"Final acc took {end-start:.2f} s")
 
 #load_pretrained('snn.pt')
-
-#t = time.process_time()
-#final_acc()
-#elapsed = time.process_time() - t
-
-#print(f"Final acc took {elapsed} s")
-
