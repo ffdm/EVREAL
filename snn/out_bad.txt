@@ -1,0 +1,1142 @@
+############### SERIES train_h5_1 ################
+############## SCENE train_day_0012 ##############
+------------------ Batch 0 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (13) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (18) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (11) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (2) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (17) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (15) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (6) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0011 ##############
+------------------ Batch 0 (41) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (35) ------------------
+Percent of ones in minibatch: 85.94%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 14.06%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+------------------ Batch 3 (39) ------------------
+Percent of ones in minibatch: 10.94%
+tensor([ 0., 10.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 10.94%
+Minibatch loss: 0.88
+Skipping minibatch (all ones)
+------------------ Batch 4 (14) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (23) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (34) ------------------
+Percent of ones in minibatch: 84.38%
+tensor([0., 2.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 71.88%
+Minibatch loss: 0.67
+Percent of ones in minibatch: 98.44%
+tensor([ 0., 11.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 65.62%
+Minibatch loss: 0.68
+------------------ Batch 7 (10) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 48.44%
+tensor([0., 5.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 40.62%
+Minibatch loss: 0.69
+------------------ Batch 8 (2) -------------------
+Percent of ones in minibatch: 59.38%
+tensor([0., 1.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 68.75%
+Minibatch loss: 0.65
+Percent of ones in minibatch: 84.38%
+tensor([ 0., 17.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 84.38%
+Minibatch loss: 0.59
+------------------ Batch 9 (31) ------------------
+Percent of ones in minibatch: 95.31%
+tensor([0., 7.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 84.38%
+Minibatch loss: 0.59
+Percent of ones in minibatch: 73.44%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 62.50%
+Minibatch loss: 0.62
+############## SCENE train_day_0017 ##############
+------------------ Batch 0 (31) ------------------
+Percent of ones in minibatch: 43.75%
+tensor([0., 1.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 67.19%
+Minibatch loss: 0.67
+Skipping minibatch (all ones)
+------------------ Batch 1 (14) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 2 (37) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 3 (27) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 4.69%
+tensor([0., 7.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 4.69%
+Minibatch loss: 0.84
+------------------ Batch 4 (12) ------------------
+Percent of ones in minibatch: 51.56%
+tensor([0., 5.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 35.94%
+Minibatch loss: 0.75
+Skipping minibatch (all ones)
+------------------ Batch 5 (39) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 6 (29) ------------------
+Percent of ones in minibatch: 73.44%
+tensor([ 0., 22.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 73.44%
+Minibatch loss: 0.53
+Skipping minibatch (all zeros)
+------------------ Batch 7 (38) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 8 (8) -------------------
+Percent of ones in minibatch: 73.44%
+tensor([ 0., 13.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 73.44%
+Minibatch loss: 0.56
+Skipping minibatch (all ones)
+------------------ Batch 9 (15) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+############## SCENE train_day_0004 ##############
+------------------ Batch 0 (7) -------------------
+Percent of ones in minibatch: 9.38%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 9.38%
+Minibatch loss: 0.98
+Skipping minibatch (all zeros)
+------------------ Batch 1 (16) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (26) ------------------
+Percent of ones in minibatch: 43.75%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 43.75%
+Minibatch loss: 0.71
+Skipping minibatch (all zeros)
+------------------ Batch 3 (3) -------------------
+Percent of ones in minibatch: 14.06%
+tensor([ 0., 14.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 14.06%
+Minibatch loss: 0.96
+Skipping minibatch (all ones)
+------------------ Batch 4 (13) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (27) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 79.69%
+tensor([0., 3.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 79.69%
+Minibatch loss: 0.46
+------------------ Batch 6 (4) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (6) -------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 57.81%
+tensor([0., 5.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 67.19%
+Minibatch loss: 0.59
+------------------ Batch 8 (28) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 90.62%
+tensor([0., 8.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 90.62%
+Minibatch loss: 0.59
+------------------ Batch 9 (21) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0020 ##############
+------------------ Batch 0 (38) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (34) ------------------
+Percent of ones in minibatch: 50.00%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 85.94%
+Minibatch loss: 0.51
+Skipping minibatch (all ones)
+------------------ Batch 3 (23) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (31) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 5 (36) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 6 (26) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (37) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 31.25%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 79.69%
+Minibatch loss: 0.63
+------------------ Batch 8 (24) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (21) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############### SERIES train_h5_2 ################
+############## SCENE train_day_0036 ##############
+------------------ Batch 0 (4) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (8) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (11) ------------------
+Percent of ones in minibatch: 62.50%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 87.50%
+Minibatch loss: 0.53
+Percent of ones in minibatch: 12.50%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 75.00%
+Minibatch loss: 0.73
+------------------ Batch 4 (7) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (1) -------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 6 (6) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (2) -------------------
+Percent of ones in minibatch: 98.44%
+tensor([0., 1.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 84.38%
+Minibatch loss: 0.51
+Skipping minibatch (all ones)
+------------------ Batch 8 (0) -------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 9 (14) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+############## SCENE train_day_0039 ##############
+------------------ Batch 0 (13) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 1 (17) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (19) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (12) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 4 (27) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 5 (21) ------------------
+Percent of ones in minibatch: 84.38%
+tensor([ 0., 22.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 90.62%
+Minibatch loss: 0.42
+Skipping minibatch (all zeros)
+------------------ Batch 6 (34) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 7 (18) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (9) -------------------
+Percent of ones in minibatch: 98.44%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 98.44%
+Minibatch loss: 0.37
+Percent of ones in minibatch: 29.69%
+tensor([ 0., 16.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 82.81%
+Minibatch loss: 0.64
+------------------ Batch 9 (4) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0028 ##############
+------------------ Batch 0 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (28) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (25) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (21) ------------------
+Percent of ones in minibatch: 70.31%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 75.00%
+Minibatch loss: 0.54
+Skipping minibatch (all ones)
+------------------ Batch 4 (16) ------------------
+Percent of ones in minibatch: 85.94%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 89.06%
+Minibatch loss: 0.46
+Skipping minibatch (all ones)
+------------------ Batch 5 (34) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 6 (24) ------------------
+Percent of ones in minibatch: 14.06%
+tensor([0., 2.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 18.75%
+Minibatch loss: 0.74
+Skipping minibatch (all ones)
+------------------ Batch 7 (20) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 8 (35) ------------------
+Percent of ones in minibatch: 73.44%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 96.88%
+Minibatch loss: 0.47
+Skipping minibatch (all ones)
+------------------ Batch 9 (0) -------------------
+Percent of ones in minibatch: 53.12%
+tensor([ 0., 14.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 53.12%
+Minibatch loss: 0.74
+Skipping minibatch (all ones)
+############## SCENE train_day_0040 ##############
+------------------ Batch 0 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all zeros)
+------------------ Batch 1 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (0) -------------------
+Percent of ones in minibatch: 53.12%
+tensor([ 0., 22.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 53.12%
+Minibatch loss: 0.77
+Skipping minibatch (all ones)
+------------------ Batch 3 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (1) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (7) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (8) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (6) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (2) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (13) ------------------
+Percent of ones in minibatch: 98.44%
+tensor([ 0., 16.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 95.31%
+Minibatch loss: 0.38
+Skipping minibatch (all ones)
+############## SCENE train_day_0025 ##############
+------------------ Batch 0 (18) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (7) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (0) -------------------
+Percent of ones in minibatch: 53.12%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 62.50%
+Minibatch loss: 0.61
+Skipping minibatch (all ones)
+------------------ Batch 3 (2) -------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 73.44%
+tensor([ 0., 10.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 46.88%
+Minibatch loss: 0.67
+------------------ Batch 4 (16) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (6) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (3) -------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 7 (17) ------------------
+Percent of ones in minibatch: 95.31%
+tensor([ 0., 18.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 46.88%
+Minibatch loss: 0.60
+Skipping minibatch (all ones)
+------------------ Batch 8 (12) ------------------
+Percent of ones in minibatch: 40.62%
+tensor([0., 8.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 53.12%
+Minibatch loss: 0.70
+Skipping minibatch (all ones)
+------------------ Batch 9 (8) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############### SERIES train_h5_3 ################
+############## SCENE train_day_0059 ##############
+------------------ Batch 0 (32) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 1 (0) -------------------
+Percent of ones in minibatch: 95.31%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 4.69%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+------------------ Batch 2 (36) ------------------
+Percent of ones in minibatch: 3.12%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 92.19%
+Minibatch loss: 0.70
+Percent of ones in minibatch: 84.38%
+tensor([ 0., 20.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 90.62%
+Minibatch loss: 0.45
+------------------ Batch 3 (38) ------------------
+Percent of ones in minibatch: 45.31%
+tensor([ 0., 21.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 93.75%
+Minibatch loss: 0.59
+Skipping minibatch (all zeros)
+------------------ Batch 4 (37) ------------------
+Percent of ones in minibatch: 45.31%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 82.81%
+Minibatch loss: 0.58
+Skipping minibatch (all ones)
+------------------ Batch 5 (31) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 6 (20) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 7 (24) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (9) -------------------
+Percent of ones in minibatch: 29.69%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 90.62%
+Minibatch loss: 0.63
+Skipping minibatch (all zeros)
+------------------ Batch 9 (27) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0050 ##############
+------------------ Batch 0 (13) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (32) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (24) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (41) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (11) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (2) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (36) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (9) -------------------
+Percent of ones in minibatch: 89.06%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 60.94%
+Minibatch loss: 0.67
+Skipping minibatch (all ones)
+------------------ Batch 9 (29) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0051 ##############
+------------------ Batch 0 (19) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (20) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (34) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 3 (22) ------------------
+Percent of ones in minibatch: 42.19%
+tensor([0., 8.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 96.88%
+Minibatch loss: 0.65
+Percent of ones in minibatch: 23.44%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 76.56%
+Minibatch loss: 0.69
+------------------ Batch 4 (37) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 68.75%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 31.25%
+Minibatch loss: 0.69
+------------------ Batch 5 (32) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (8) -------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 7 (26) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 12.50%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 87.50%
+Minibatch loss: 0.69
+------------------ Batch 8 (16) ------------------
+Percent of ones in minibatch: 93.75%
+tensor([ 0., 13.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 75.00%
+Minibatch loss: 0.48
+Percent of ones in minibatch: 57.81%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 85.94%
+Minibatch loss: 0.55
+------------------ Batch 9 (39) ------------------
+Percent of ones in minibatch: 50.00%
+tensor([ 0., 21.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 95.31%
+Minibatch loss: 0.54
+Skipping minibatch (all zeros)
+############## SCENE train_day_0060 ##############
+------------------ Batch 0 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (23) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (24) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (8) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (30) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (37) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 89.06%
+tensor([ 0., 24.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 96.88%
+Minibatch loss: 0.40
+------------------ Batch 6 (39) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (14) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (38) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 82.81%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 28.12%
+Minibatch loss: 0.69
+------------------ Batch 9 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############## SCENE train_day_0043 ##############
+------------------ Batch 0 (39) ------------------
+Percent of ones in minibatch: 25.00%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 71.88%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+------------------ Batch 1 (29) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 56.25%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 89.06%
+Minibatch loss: 0.60
+------------------ Batch 2 (2) -------------------
+Percent of ones in minibatch: 20.31%
+tensor([0., 4.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 84.38%
+Minibatch loss: 0.69
+Skipping minibatch (all zeros)
+------------------ Batch 3 (38) ------------------
+Percent of ones in minibatch: 92.19%
+tensor([0., 1.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 85.94%
+Minibatch loss: 0.45
+Percent of ones in minibatch: 79.69%
+tensor([ 0., 14.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 96.88%
+Minibatch loss: 0.45
+------------------ Batch 4 (9) -------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 62.50%
+tensor([ 0., 24.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 76.56%
+Minibatch loss: 0.56
+------------------ Batch 5 (11) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (28) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 42.19%
+tensor([ 0., 21.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 100.00%
+Minibatch loss: 0.56
+------------------ Batch 7 (10) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (37) ------------------
+Percent of ones in minibatch: 98.44%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 98.44%
+Minibatch loss: 0.35
+Skipping minibatch (all zeros)
+------------------ Batch 9 (35) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 71.88%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 95.31%
+Minibatch loss: 0.46
+############### SERIES train_h5_4 ################
+############# SCENE train_night_0011 #############
+------------------ Batch 0 (39) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (23) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (25) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (40) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (33) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (30) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (16) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 8 (24) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (28) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############# SCENE train_night_0017 #############
+------------------ Batch 0 (23) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (30) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (2) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (35) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 5 (14) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (38) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 57.81%
+tensor([0., 5.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 57.81%
+Minibatch loss: 0.68
+------------------ Batch 7 (22) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (33) ------------------
+Percent of ones in minibatch: 65.62%
+tensor([ 0., 20.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 65.62%
+Minibatch loss: 0.63
+Skipping minibatch (all ones)
+------------------ Batch 9 (16) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 39.06%
+tensor([ 0., 19.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 39.06%
+Minibatch loss: 0.78
+############# SCENE train_night_0010 #############
+------------------ Batch 0 (10) ------------------
+Percent of ones in minibatch: 3.12%
+tensor([ 0., 22.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 3.12%
+Minibatch loss: 1.23
+Skipping minibatch (all zeros)
+------------------ Batch 1 (12) ------------------
+Percent of ones in minibatch: 28.12%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 28.12%
+Minibatch loss: 1.00
+Skipping minibatch (all ones)
+------------------ Batch 2 (13) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (8) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (0) -------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 5 (2) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (7) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (4) -------------------
+Percent of ones in minibatch: 15.62%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 15.62%
+Minibatch loss: 1.11
+Skipping minibatch (all zeros)
+############# SCENE train_night_0001 #############
+------------------ Batch 0 (22) ------------------
+Percent of ones in minibatch: 57.81%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 71.88%
+Minibatch loss: 0.51
+Skipping minibatch (all zeros)
+------------------ Batch 1 (11) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (7) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (16) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (21) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (20) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (23) ------------------
+Percent of ones in minibatch: 46.88%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 82.81%
+Minibatch loss: 0.58
+Skipping minibatch (all ones)
+------------------ Batch 7 (37) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (40) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############# SCENE train_night_0004 #############
+------------------ Batch 0 (26) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (41) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (4) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (30) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (36) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 7 (38) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (35) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 9 (31) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############### SERIES train_h5_5 ################
+############# SCENE train_night_0023 #############
+------------------ Batch 0 (16) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (40) ------------------
+Skipping minibatch (all zeros)
+Skipping minibatch (all zeros)
+------------------ Batch 2 (1) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (34) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (12) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (14) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (20) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (33) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (10) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############# SCENE train_night_0027 #############
+------------------ Batch 0 (26) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (28) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (15) ------------------
+Percent of ones in minibatch: 45.31%
+tensor([ 0., 24.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 90.62%
+Minibatch loss: 0.57
+Skipping minibatch (all zeros)
+------------------ Batch 3 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (5) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (1) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (3) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (14) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (21) ------------------
+Percent of ones in minibatch: 31.25%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 95.31%
+Minibatch loss: 0.61
+Skipping minibatch (all ones)
+------------------ Batch 9 (32) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############# SCENE train_night_0033 #############
+------------------ Batch 0 (0) -------------------
+Percent of ones in minibatch: 53.12%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 46.88%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+############# SCENE train_night_0035 #############
+------------------ Batch 0 (17) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 1 (21) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (22) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (20) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 4 (6) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (9) -------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 6 (25) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 7 (10) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 8 (34) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (32) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+############# SCENE train_night_0026 #############
+------------------ Batch 0 (23) ------------------
+Percent of ones in minibatch: 64.06%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 59.38%
+Minibatch loss: 0.60
+Skipping minibatch (all ones)
+------------------ Batch 1 (35) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 2 (21) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 3 (25) ------------------
+Skipping minibatch (all ones)
+Percent of ones in minibatch: 78.12%
+tensor([ 0., 23.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(1, device='cuda:0')
+Minibatch accuracy: 95.31%
+Minibatch loss: 0.45
+------------------ Batch 4 (20) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 5 (39) ------------------
+Percent of ones in minibatch: 28.12%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 76.56%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+------------------ Batch 6 (29) ------------------
+Percent of ones in minibatch: 54.69%
+tensor([2., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 60.94%
+Minibatch loss: 0.69
+Skipping minibatch (all ones)
+------------------ Batch 7 (37) ------------------
+Skipping minibatch (all zeros)
+Percent of ones in minibatch: 42.19%
+tensor([0., 0.], device='cuda:0', grad_fn=<SelectBackward0>)
+tensor(0, device='cuda:0')
+Minibatch accuracy: 93.75%
+Minibatch loss: 0.58
+------------------ Batch 8 (31) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+------------------ Batch 9 (32) ------------------
+Skipping minibatch (all ones)
+Skipping minibatch (all ones)
+Total ones in training data: 2901/30848
+Training loop took 1215.82 s
+FINAL ACCURACY MEASURE
+############ RUNNING SERIES test_h5_1 ############
+########## RUNNING SCENE test_night_005 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########### RUNNING SCENE test_day_010 ###########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########### RUNNING SCENE test_day_001 ###########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########## RUNNING SCENE test_night_001 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########### RUNNING SCENE test_day_011 ###########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+############ RUNNING SERIES test_h5_2 ############
+########## RUNNING SCENE test_night_007 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########## RUNNING SCENE test_night_012 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########## RUNNING SCENE test_night_009 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########## RUNNING SCENE test_night_006 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+########## RUNNING SCENE test_night_011 ##########
+-------------------- Batch 0 ---------------------
+-------------------- Batch 1 ---------------------
+-------------------- Batch 2 ---------------------
+-------------------- Batch 3 ---------------------
+-------------------- Batch 4 ---------------------
+Total correctly classified test set images: 4767/6400
+Test set Accuracy: 74.48%
+Total ones in test set: 5044
+Final acc took 266.64 s

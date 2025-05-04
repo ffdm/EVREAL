@@ -3,3 +3,6 @@ t7:
 
 test:
 	python3 test.py | tee test_out.txt
+
+val:
+	python3 val.py | tee val.txt

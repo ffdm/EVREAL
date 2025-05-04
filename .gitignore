@@ -3,3 +3,4 @@
 *.swo
 outputs/
 *.pt
+snn/targetframes/

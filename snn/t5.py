@@ -26,14 +26,9 @@ print = functools.partial(print, flush=True)
 
 
 # dataloader arguments
-# FIXED AT 256 FOR BLOSC INPUTS
 batch_size = 128
 # 30 FPS using provided annotations
 fps = 30
-
-#data_path='../outputs/t50ms/eTraM_npy/train_h5_1/HyperE2VID/frame_0000001000.png'
-#events_path='/data1/fdm/eTraM/Static/HDF5/train_h5_1/train_day_0001_td.h5'
-#targets_path='../downstream_tasks/detection/outputs/HyperE2VID/train_h5_1/boxes/'
 
 data_path = '/data1/fdm/eTraM/Static/HDF5/'
 test_series = ['test_h5_1', 'test_h5_2']
@@ -44,11 +39,8 @@ train_series = ['train_h5_1', 'train_h5_2', 'train_h5_3', 'train_h5_4',
 objects = ['pedestrian', 'car', 'bicycle', 'bus', 'motorbike', 'truck',
            'tram', 'wheelchair']
 
-bb_delta = 5
-
 # CUDA for on MBIT
 device = torch.device("cuda")
-#device = torch.device("cpu")
 
 # Temporal Dynamics
 num_steps = 25
@@ -525,11 +517,10 @@ def iterate_through():
 
 # Loss fn and optimizer
 
-#optimizer = torch.optim.Adam(net.parameters(), lr=1e-5, betas=(0.9, 0.999))
-optimizer = torch.optim.Adam(net.parameters(), lr=2e-4, betas=(0.9, 0.999))
+optimizer = torch.optim.Adam(net.parameters(), lr=1e-5, betas=(0.8, 0.95))
+#optimizer = torch.optim.Adam(net.parameters(), lr=2e-3, betas=(0.9, 0.999))
 
 loss_fn = SF.ce_rate_loss()
-#loss_fn = SF.ce_count_loss()
 
 # Epochs
 num_epochs = 5
@@ -537,9 +528,7 @@ num_epochs = 5
 # Batches
 num_samples = 21
 max_train = 16
-
-#num_batches = 16
-num_batches = 5
+num_batches = 10
 
 # Batches per epoch (batches per scene)
 # Reserve 5 samples for test
@@ -553,7 +542,6 @@ def train(iter_counter):
     total = 0
 
     for series in train_series:
-        # if (series != 'train_h5_1'): break
         print(f" SERIES {series} ".center(50, "#"))
         path = data_path+series+'/'
 
@@ -562,7 +550,7 @@ def train(iter_counter):
         scenefiles = glob(path+'*_td.h5')
         random.shuffle(scenefiles)
         for scenefile in scenefiles:
-            if epoch_counter == num_epochs: break
+            #if epoch_counter == num_epochs: break
 
             scene = scenefile.replace(path, '').replace('_td.h5', '')
             print(f" SCENE {scene} ".center(50, "#"))
@@ -572,7 +560,7 @@ def train(iter_counter):
             batchfiles = glob(path+'b2/'+scene+'_tg_b*.npy')
             random.shuffle(batchfiles)
             for batchfile in batchfiles:
-                if batch_counter == num_batches: break
+                #if batch_counter == num_batches: break
 
                 batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
                 batch = int(batch.replace(scene+'_tg_b', ''))
@@ -591,29 +579,39 @@ def train(iter_counter):
                 total += batch_size
 
                 # minibatch training loop
-                minibatches = 2
+                minibatches = 4
                 # number of iters per minibatch
                 num = int(len(train_data)/minibatches)
 
                 for minibatch in range(minibatches):
-                    ones = 0
                     start = minibatch*num
                     end = start + num
                     data = train_data[start:end].to(device)
                     targets = train_targets[start:end].type(torch.LongTensor)
                     targets = targets.to(device).squeeze(1)
 
+                    # Count number of ones within minibatch
+                    mb_ones = int(torch.sum(targets, dim=0))
+                    """
+                    if mb_ones == num:
+                        print("Skipping minibatch (all ones)")
+                        continue
+                    elif mb_ones == 0:
+                        print("Skipping minibatch (all zeros)")
+                        continue
+                    """
+
+                    ones += mb_ones
+                    print(f"Percent of ones in minibatch: {100*mb_ones/num:.2f}%")
+
                     # forward
                     net.train()
                     spk_rec, mem_rec = net(data)
-
 
                     # loss
                     loss_val = loss_fn(spk_rec, targets)
                     _, idx = spk_rec.sum(dim=0).max(1)
 
-                    print(targets.shape)  
-                    print(spk_rec.shape)  
                     print(spk_rec.sum(dim=0)[0])
                     print(targets[0])
 
@@ -633,7 +631,6 @@ def train(iter_counter):
                     print(f"avg loss over num steps: {loss/num_steps}")
                     """
 
-
                     # grad calc + weight update
                     optimizer.zero_grad()
                     loss_val.backward()
@@ -648,10 +645,6 @@ def train(iter_counter):
                     print(f"Minibatch accuracy: {100*acc:.2f}%")
                     print(f"Minibatch loss: {loss_val.item():.2f}")
 
-                    # Count number of ones within minibatch
-                    ones += int(torch.sum(targets, dim=0))
-                    print(f"Percent of ones in minibatch: {100*ones/num:.2f}%")
-
                     iter_counter += 1
 
                 batch_counter += 1
@@ -663,13 +656,13 @@ def train(iter_counter):
     # plot loss over iteration
     fig, ax = plt.subplots()
     plt.plot(loss_hist)
-    plt.legend("train loss")
     plt.xlabel("iter")
+    plt.ylabel("minibatch loss")
     plt.savefig("loss.pdf")
     plt.clf()
     plt.plot(test_acc_hist)
-    plt.legend("test accuracy")
     plt.xlabel("iter")
+    plt.ylabel("minibatch acc")
     plt.savefig("acc.pdf")
 
 def final_acc():
@@ -700,7 +693,7 @@ def final_acc():
             for scenefile in scenefiles:
                 scene = scenefile.replace(path, '').replace('_td.h5', '')
 
-                if test_scene_counter == num_test_scenes: break
+                #if test_scene_counter == num_test_scenes: break
 
                 print(f" RUNNING SCENE {scene} ".center(50, "#"))
 
@@ -709,7 +702,7 @@ def final_acc():
                 batchfiles = glob(path+'b2/'+scene+'_tg_b*.npy')
                 random.shuffle(batchfiles)
                 for batchfile in batchfiles:
-                    if batch_counter == num_batches: break
+                    #if batch_counter == num_batches: break
 
                     batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
                     batch = int(batch.replace(scene+'_tg_b', ''))

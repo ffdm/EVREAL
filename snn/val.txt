@@ -1,0 +1,7 @@
+########### Iterating series test_h5_1 ###########
+########## Iterating scene test_day_011 ##########
+############# Iterating batch 0 (18) #############
+############# Iterating batch 1 (39) #############
+############# Iterating batch 2 (34) #############
+############# Iterating batch 3 (6) ##############
+############# Iterating batch 4 (26) #############

@@ -1,0 +1,210 @@
+########### Iterating series test_h5_1 ###########
+########## Iterating scene test_day_014 ##########
+############# Iterating batch 0 (37) #############
+############# Iterating batch 1 (28) #############
+############# Iterating batch 2 (12) #############
+############# Iterating batch 3 (30) #############
+############# Iterating batch 4 (13) #############
+############# Iterating batch 5 (39) #############
+############# Iterating batch 6 (22) #############
+############# Iterating batch 7 (11) #############
+############# Iterating batch 8 (20) #############
+############# Iterating batch 9 (36) #############
+########## Iterating scene test_day_015 ##########
+############# Iterating batch 0 (19) #############
+############# Iterating batch 1 (1) ##############
+############# Iterating batch 2 (29) #############
+############# Iterating batch 3 (18) #############
+############# Iterating batch 4 (11) #############
+############# Iterating batch 5 (7) ##############
+############# Iterating batch 6 (4) ##############
+############# Iterating batch 7 (3) ##############
+############# Iterating batch 8 (30) #############
+############# Iterating batch 9 (12) #############
+########## Iterating scene test_day_013 ##########
+############# Iterating batch 0 (2) ##############
+############# Iterating batch 1 (6) ##############
+############# Iterating batch 2 (29) #############
+############# Iterating batch 3 (9) ##############
+############# Iterating batch 4 (35) #############
+############# Iterating batch 5 (27) #############
+############# Iterating batch 6 (4) ##############
+############# Iterating batch 7 (18) #############
+############# Iterating batch 8 (38) #############
+############# Iterating batch 9 (36) #############
+########## Iterating scene test_day_007 ##########
+############# Iterating batch 0 (13) #############
+############# Iterating batch 1 (23) #############
+############# Iterating batch 2 (36) #############
+############# Iterating batch 3 (9) ##############
+############# Iterating batch 4 (38) #############
+############# Iterating batch 5 (33) #############
+############# Iterating batch 6 (26) #############
+############# Iterating batch 7 (24) #############
+############# Iterating batch 8 (11) #############
+############# Iterating batch 9 (41) #############
+########## Iterating scene test_day_011 ##########
+############# Iterating batch 0 (16) #############
+############# Iterating batch 1 (37) #############
+############# Iterating batch 2 (20) #############
+############# Iterating batch 3 (35) #############
+############# Iterating batch 4 (30) #############
+############# Iterating batch 5 (39) #############
+############# Iterating batch 6 (38) #############
+############# Iterating batch 7 (41) #############
+############# Iterating batch 8 (23) #############
+############# Iterating batch 9 (32) #############
+########## Iterating scene test_day_008 ##########
+############# Iterating batch 0 (0) ##############
+########## Iterating scene test_day_006 ##########
+############# Iterating batch 0 (9) ##############
+############# Iterating batch 1 (37) #############
+############# Iterating batch 2 (25) #############
+############# Iterating batch 3 (34) #############
+############# Iterating batch 4 (18) #############
+############# Iterating batch 5 (30) #############
+############# Iterating batch 6 (26) #############
+############# Iterating batch 7 (7) ##############
+############# Iterating batch 8 (36) #############
+############# Iterating batch 9 (8) ##############
+########## Iterating scene test_day_009 ##########
+############# Iterating batch 0 (15) #############
+############# Iterating batch 1 (33) #############
+############# Iterating batch 2 (2) ##############
+############# Iterating batch 3 (37) #############
+############# Iterating batch 4 (6) ##############
+############# Iterating batch 5 (35) #############
+############# Iterating batch 6 (7) ##############
+############# Iterating batch 7 (28) #############
+############# Iterating batch 8 (23) #############
+############# Iterating batch 9 (29) #############
+########## Iterating scene test_day_003 ##########
+############# Iterating batch 0 (6) ##############
+############# Iterating batch 1 (15) #############
+############# Iterating batch 2 (20) #############
+############# Iterating batch 3 (34) #############
+############# Iterating batch 4 (21) #############
+############# Iterating batch 5 (19) #############
+############# Iterating batch 6 (0) ##############
+############# Iterating batch 7 (7) ##############
+############# Iterating batch 8 (2) ##############
+############# Iterating batch 9 (23) #############
+########## Iterating scene test_day_004 ##########
+############# Iterating batch 0 (1) ##############
+############# Iterating batch 1 (0) ##############
+Avg IOU: 0.9999824942124614, lowest IOU: 0.9833049062788743
+dropped: 398/10624=0.0375
+########### Iterating series test_h5_2 ###########
+######### Iterating scene test_night_013 #########
+############# Iterating batch 0 (2) ##############
+############# Iterating batch 1 (32) #############
+############# Iterating batch 2 (35) #############
+############# Iterating batch 3 (4) ##############
+############# Iterating batch 4 (5) ##############
+############# Iterating batch 5 (15) #############
+############# Iterating batch 6 (9) ##############
+############# Iterating batch 7 (36) #############
+############# Iterating batch 8 (14) #############
+############# Iterating batch 9 (40) #############
+######### Iterating scene test_night_010 #########
+############# Iterating batch 0 (4) ##############
+############# Iterating batch 1 (30) #############
+############# Iterating batch 2 (18) #############
+############# Iterating batch 3 (31) #############
+############# Iterating batch 4 (16) #############
+############# Iterating batch 5 (12) #############
+############# Iterating batch 6 (10) #############
+############# Iterating batch 7 (28) #############
+############# Iterating batch 8 (17) #############
+############# Iterating batch 9 (34) #############
+######### Iterating scene test_night_006 #########
+############# Iterating batch 0 (6) ##############
+############# Iterating batch 1 (33) #############
+############# Iterating batch 2 (5) ##############
+############# Iterating batch 3 (14) #############
+############# Iterating batch 4 (15) #############
+############# Iterating batch 5 (35) #############
+############# Iterating batch 6 (24) #############
+############# Iterating batch 7 (2) ##############
+############# Iterating batch 8 (31) #############
+############# Iterating batch 9 (28) #############
+######### Iterating scene test_night_009 #########
+############# Iterating batch 0 (10) #############
+############# Iterating batch 1 (22) #############
+############# Iterating batch 2 (16) #############
+############# Iterating batch 3 (1) ##############
+############# Iterating batch 4 (4) ##############
+############# Iterating batch 5 (21) #############
+############# Iterating batch 6 (15) #############
+############# Iterating batch 7 (5) ##############
+############# Iterating batch 8 (24) #############
+############# Iterating batch 9 (2) ##############
+######### Iterating scene test_night_015 #########
+############# Iterating batch 0 (27) #############
+############# Iterating batch 1 (29) #############
+############# Iterating batch 2 (2) ##############
+############# Iterating batch 3 (25) #############
+############# Iterating batch 4 (3) ##############
+############# Iterating batch 5 (17) #############
+############# Iterating batch 6 (21) #############
+############# Iterating batch 7 (30) #############
+############# Iterating batch 8 (39) #############
+############# Iterating batch 9 (8) ##############
+######### Iterating scene test_night_012 #########
+############# Iterating batch 0 (19) #############
+############# Iterating batch 1 (18) #############
+############# Iterating batch 2 (10) #############
+############# Iterating batch 3 (14) #############
+############# Iterating batch 4 (13) #############
+############# Iterating batch 5 (25) #############
+############# Iterating batch 6 (17) #############
+############# Iterating batch 7 (1) ##############
+############# Iterating batch 8 (4) ##############
+############# Iterating batch 9 (9) ##############
+######### Iterating scene test_night_007 #########
+############# Iterating batch 0 (4) ##############
+############# Iterating batch 1 (9) ##############
+############# Iterating batch 2 (7) ##############
+############# Iterating batch 3 (13) #############
+############# Iterating batch 4 (3) ##############
+############# Iterating batch 5 (11) #############
+############# Iterating batch 6 (0) ##############
+############# Iterating batch 7 (1) ##############
+############# Iterating batch 8 (6) ##############
+############# Iterating batch 9 (8) ##############
+######### Iterating scene test_night_014 #########
+############# Iterating batch 0 (28) #############
+############# Iterating batch 1 (18) #############
+############# Iterating batch 2 (3) ##############
+############# Iterating batch 3 (11) #############
+############# Iterating batch 4 (29) #############
+############# Iterating batch 5 (17) #############
+############# Iterating batch 6 (30) #############
+############# Iterating batch 7 (0) ##############
+############# Iterating batch 8 (40) #############
+############# Iterating batch 9 (9) ##############
+######### Iterating scene test_night_008 #########
+############# Iterating batch 0 (12) #############
+############# Iterating batch 1 (28) #############
+############# Iterating batch 2 (38) #############
+############# Iterating batch 3 (32) #############
+############# Iterating batch 4 (26) #############
+############# Iterating batch 5 (36) #############
+############# Iterating batch 6 (6) ##############
+############# Iterating batch 7 (22) #############
+############# Iterating batch 8 (13) #############
+############# Iterating batch 9 (21) #############
+######### Iterating scene test_night_011 #########
+############# Iterating batch 0 (6) ##############
+############# Iterating batch 1 (17) #############
+############# Iterating batch 2 (3) ##############
+############# Iterating batch 3 (10) #############
+############# Iterating batch 4 (27) #############
+############# Iterating batch 5 (20) #############
+############# Iterating batch 6 (4) ##############
+############# Iterating batch 7 (39) #############
+############# Iterating batch 8 (35) #############
+############# Iterating batch 9 (31) #############
+Avg IOU: 0.9715355958391768, lowest IOU: 5.8647427497745465e-05
+dropped: 2088/23424=0.0891
+Eval took 1649.03 s
