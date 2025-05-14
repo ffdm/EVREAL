@@ -57,6 +57,10 @@ min_seen_iou = 1
 # IOU threshold to send
 min_iou = 1
 
+mem1 = self.lif1.init_leaky()
+mem2 = self.lif2.init_leaky()
+mem3 = self.lif3.init_leaky()
+
 # Define Network
 class Net(nn.Module):
     def __init__(self):
@@ -86,9 +90,6 @@ class Net(nn.Module):
     def forward(self, x):
 
         # Init hidden states at t=0
-        mem1 = self.lif1.init_leaky()
-        mem2 = self.lif2.init_leaky()
-        mem3 = self.lif3.init_leaky()
 
         # Record final layer
         spk3_rec = []
@@ -117,9 +118,6 @@ class Net(nn.Module):
 
             cur3 = self.fc1(spk2)
             spk3, mem3 = self.lif3(cur3, mem3)
-            print(mem1.shape)
-            print(mem2.shape)
-            print(mem3.shape)
 
             spk3_rec.append(spk3)
             mem3_rec.append(mem3)
@@ -128,369 +126,11 @@ class Net(nn.Module):
 
 net = Net().to(device)
 
-def load_pretrained(file):
-    net.load_state_dict(torch.load(file))
-    net.eval()
-
-# Goal: create represention of events as follows:
-# Want to divide up the number of time bins between each frame
-# Frames are defined by FPS, time bins defined by num_steps
-# dim should be [N, C, H, W] = [#frames, 2, 720, 1280]
-
-#print(x.shape)
-
-#########################################
-# FUNCTIONS FOR DISPLAYING EVENTS AND BBs
-#########################################
-
-def rei_frame(image, events):
-    for t in tqdm(range(events.shape[0])):
-        image[np.where(events[t,0] == 1)] = np.array([0,0,255])
-        image[np.where(events[t,1] == 1)] = np.array([255,0,0])
-    return image
-
-def draw_detection(image, bbox, label):
-    """
-    Draw bounding box and label on the image.
-    """
-    bbox = list(map(int, bbox))
-    x1, y1, x2, y2 = bbox
-    cv2.rectangle(image, (x1, y1), (x2, y2), (0, 255, 0), 1)
-    cv2.putText(image, f"{label}", (x1, y1 - 10),
-                cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
-
-def draw_bbox_array(image, bbox, label):
-    """
-    Draw bounding box and label on the image.
-    """
-    print(bbox.shape) 
-    print(label)
-    print(bbox)
-    for i, box in enumerate(bbox):
-        x1, y1, x2, y2 = box
-
-        x1 = int(x1)
-        y1 = int(y1)
-        x2 = int(x2)
-        y2 = int(y2)
-
-        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 255, 255), 1)
-        if type(label) is not str:
-            # MEANS NOT SENT
-            cv2.putText(image, f"IoU: {label[i]:.2f}", (x2 - 80, y2 + 17),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-        elif label == 'send':
-            cv2.putText(image, f"IoU: 1.00", (x2 - 75, y2 + 17),
-                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
-
-def draw_send(image, send):
-    """
-    image: Image to draw
-    send: Boolean for if to send or not
-    """
-    h = image.shape[0]
-    w = image.shape[1]
-    if send:
-        cv2.rectangle(image, (0,0), (w, h), (0,255,0), 5)
-        cv2.putText(image, "Sent", (10, 40),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
-    else:
-        cv2.rectangle(image, (0,0), (w, h), (0,0,255), 5)
-        cv2.putText(image, "Skipped", (10, 40),
-                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
-
-def render(events, targets):
-    for i, event_frame in enumerate(events):
-        render_frame(event_frame, targets[i])
-
-def render_frame(events, targets):
-    black_image = np.zeros((events.shape[2], events.shape[3], 3))
-    frame = rei_frame(black_image, events)
-
-    for ann in targets:
-        x1 = ann['x']
-        y1 = ann['y']
-        x2 = x1 + ann['w']
-        y2 = y1 + ann['h']
-        label = f"{ann['class_confidence']:.2f}: {objects[ann['class_id']]}"
-        draw_detection(frame, (x1, y1, x2, y2), label)
-
-    cv2.imshow("Frame", frame)
-    cv2.waitKey(0)
-
-def render_frame_on_image(events, targets, image):
-
-    print(events.shape)
-    print(image.shape)
-
-    frame = rei_frame(image, events)
-
-    for ann in targets:
-        x1 = ann['x']
-        y1 = ann['y']
-        x2 = x1 + ann['w']
-        y2 = y1 + ann['h']
-        label = f"{ann['class_confidence']:.2f}: {objects[ann['class_id']]}"
-        draw_detection(frame, (x1, y1, x2, y2), label)
-
-    cv2.imshow("Frame", frame)
-    cv2.waitKey(0)
-
-#########################################
-# FUNCTIONS FOR GETTING EVENTS AND TARGETS
-#########################################
-
-import scipy.optimize
 import numpy as np
-
-def bbox_iou(boxA, boxB):
-  # https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
-  # ^^ corrected.
-
-  # Determine the (x, y)-coordinates of the intersection rectangle
-  xA = max(boxA[0], boxB[0])
-  yA = max(boxA[1], boxB[1])
-  xB = min(boxA[2], boxB[2])
-  yB = min(boxA[3], boxB[3])
-
-  interW = xB - xA + 1
-  interH = yB - yA + 1
-
-  # Correction: reject non-overlapping boxes
-  if interW <=0 or interH <=0 :
-    return -1.0
-
-  interArea = interW * interH
-  boxAArea = (boxA[2] - boxA[0] + 1) * (boxA[3] - boxA[1] + 1)
-  boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
-  iou = interArea / float(boxAArea + boxBArea - interArea)
-  return iou
-
-
-def match_bboxes(bbox_gt, bbox_pred, IOU_THRESH=0):
-    '''
-    Given sets of true and predicted bounding-boxes,
-    determine the best possible match.
-    Parameters
-    ----------
-    bbox_gt, bbox_pred : N1x4 and N2x4 np array of bboxes [x1,y1,x2,y2].
-      The number of bboxes, N1 and N2, need not be the same.
-
-    Returns
-    -------
-    (idxs_true, idxs_pred, ious, labels)
-        idxs_true, idxs_pred : indices into gt and pred for matches
-        ious : corresponding IOU value of each match
-        labels: vector of 0/1 values for the list of detections
-    '''
-    n_true = bbox_gt.shape[0]
-    n_pred = bbox_pred.shape[0]
-    MAX_DIST = 1.0
-    MIN_IOU = 0.0
-
-    # NUM_GT x NUM_PRED
-    iou_matrix = np.zeros((n_true, n_pred))
-    for i in range(n_true):
-        for j in range(n_pred):
-            iou_matrix[i, j] = bbox_iou(bbox_gt[i,:], bbox_pred[j,:])
-
-    if n_pred > n_true:
-      # there are more predictions than ground-truth - add dummy rows
-      diff = n_pred - n_true
-      iou_matrix = np.concatenate( (iou_matrix,
-                                    np.full((diff, n_pred), MIN_IOU)),
-                                  axis=0)
-
-    if n_true > n_pred:
-      # more ground-truth than predictions - add dummy columns
-      diff = n_true - n_pred
-      iou_matrix = np.concatenate( (iou_matrix,
-                                    np.full((n_true, diff), MIN_IOU)),
-                                  axis=1)
-
-    # call the Hungarian matching
-    idxs_true, idxs_pred = scipy.optimize.linear_sum_assignment(1 - iou_matrix)
-
-    if (not idxs_true.size) or (not idxs_pred.size):
-        ious = np.array([])
-    else:
-        ious = iou_matrix[idxs_true, idxs_pred]
-
-    # remove dummy assignments
-    sel_pred = idxs_pred<n_pred
-    idx_pred_actual = idxs_pred[sel_pred]
-    idx_gt_actual = idxs_true[sel_pred]
-    ious_actual = iou_matrix[idx_gt_actual, idx_pred_actual]
-    sel_valid = (ious_actual > IOU_THRESH)
-    label = sel_valid.astype(int)
-
-    return idx_gt_actual[sel_valid], idx_pred_actual[sel_valid], ious_actual[sel_valid], label
 
 def get_events(path, prefix, bn):
     events = blosc2.load_array(path+'b2/'+prefix+'_ev_b'+str(bn).zfill(2)+'.b2')
     return torch.Tensor(events)
-
-
-def get_targets(path, prefix, bn):
-    global total_iou
-    global total_seen
-    global dropped
-    global min_seen_iou
-    targets = np.zeros(batch_size)
-
-    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
-                    allow_pickle=True)
-
-    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
-    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
-
-    for i, ann in enumerate(anns):
-       
-        total_seen += 1
-
-        ## ONLY DETECT OBJECT OR NOT FOR DEBUGGING
-        if len(ann) > 0:
-            targets[i] = 1
-
-        continue
-
-        ## ... might need a recurrent model otherwise ...
-        ## and what should I do on the first input of the batch?
-
-        if len(ann_p) != len(ann) or i == 0:
-
-            # SNN Sends if # anns change or first frame
-            targets[i] = 1
-            ann_p = ann
-            total_iou += 1
-
-            continue
-
-        x1_p = ann_p['x']
-        y1_p = ann_p['y']
-        x2_p = x1_p + ann_p['w']
-        y2_p = y1_p + ann_p['h']
-        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
-
-        x1 = ann['x']
-        y1 = ann['y']
-        x2 = x1 + ann['w']
-        y2 = y1 + ann['h']
-        bbox = np.column_stack((x1, y1, x2, y2))
-
-        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
-
-        if len(ious) > 0: iou_min = np.min(ious)
-        else: 
-            iou_min = min_seen_iou
-
-        if iou_min < min_iou or len(ious) < len(ann):
-            targets[i] = 1
-            ann_p = ann
-            total_iou += 1
-
-        else:
-            total_iou += iou_min
-            dropped += 1
-
-            if (min_seen_iou > iou_min):
-                min_seen_iou = iou_min
-
-    return torch.Tensor(targets)
-
-
-def get_targets_visual(path, prefix, bn):
-    global total_iou
-    global total_seen
-    global dropped
-    global min_seen_iou
-    targets = np.zeros(batch_size)
-
-    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
-                    allow_pickle=True)
-    events = get_events(path, prefix, bn)
-
-    # TARGET GENERATION METHODOLOGY
-    # FIRST IMAGE ALWAYS IS MARKED AS A 1 to encourage SNN to send more
-    # often than not. The target is then saved. 
-    # If the number of BBs changes? SNN sends
-    # Else, the iou is calciulated from previous send
-    # If it is below a threshold? the SNN sends
-
-    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
-    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
-
-    for i, ann in enumerate(anns):
-        total_seen += 1
-
-        # black image
-        image = np.zeros((events.shape[3], events.shape[4], 3)) 
-
-        x1_p = ann_p['x']
-        y1_p = ann_p['y']
-        x2_p = x1_p + ann_p['w']
-        y2_p = y1_p + ann_p['h']
-        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
-
-        x1 = ann['x']
-        y1 = ann['y']
-        x2 = x1 + ann['w']
-        y2 = y1 + ann['h']
-        bbox = np.column_stack((x1, y1, x2, y2))
-
-        if len(ann_p) != len(ann) or i == 0:
-
-            # SNN Sends if # anns change or first frame
-            targets[i] = 1
-            ann_p = ann
-            total_iou += 1
-
-            draw_bbox_array(image, bbox, 'send')
-            draw_send(image, 1)
-
-            cv2.putText(image, 
-            f"{dropped/total_seen:.3f}% dropped",
-            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-
-            render_frame_on_image(events[i], ann, image) 
-
-            continue
-
-        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
-
-        if len(ious) > 0: iou_min = np.min(ious)
-        else: 
-            iou_min = min_seen_iou
-
-        if iou_min < min_iou or len(ious) < len(ann):
-            targets[i] = 1
-            ann_p = ann
-            total_iou += 1
-
-            draw_bbox_array(image, bbox, 'send')
-            draw_send(image, 1)
-
-            cv2.putText(image, 
-            f"{dropped/total_seen:.3f}% dropped",
-            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-
-        else:
-            total_iou += iou_min
-            dropped += 1
-
-            draw_bbox_array(image, bbox_p, ious)
-            draw_send(image, 0)
-
-            cv2.putText(image, 
-            f"{dropped/total_seen:.3f}% dropped",
-            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
-
-            if (min_seen_iou > iou_min):
-                min_seen_iou = iou_min
-
-        render_frame_on_image(events[i], ann, image) 
-
-    return torch.Tensor(targets)
 
 def iterate_through():
     for series in test_series:
@@ -509,8 +149,7 @@ def iterate_through():
                 batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
                 batch = int(batch.replace(scene+'_tg_b', ''))
 
-                #test_data = get_events(path, scene, batch)
-                test_targets = get_targets(path, scene, batch).unsqueeze(1) 
+                test_data = get_events(path, scene, batch)
 
                 batch_counter += 1
             test_scene_counter += 1
@@ -614,13 +253,6 @@ def train(iter_counter):
                     # loss
                     loss_val = loss_fn(spk_rec, targets)
                     _, idx = spk_rec.sum(dim=0).max(1)
-
-                    print("MEOW")
-                    print(f"Spk rec shape: {spk_rec.shape}")
-                    print(f"Mem rec shape: {mem_rec.shape}")
-                    print(f"targets shape: {targets.shape}")
-                    print(f"idx shape: {idx.shape}")
-                    sys.exit()
 
                     print(spk_rec.sum(dim=0)[0])
                     print(targets[0])

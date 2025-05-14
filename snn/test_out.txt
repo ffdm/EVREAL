@@ -1,7 +1,7 @@
 ############### SERIES train_h5_1 ################
-############## SCENE train_day_0004 ##############
------------------- Batch 0 (3) -------------------
-Percent of ones in minibatch: 0.00%
+############## SCENE train_day_0013 ##############
+------------------ Batch 0 (5) -------------------
+Percent of ones in minibatch: 100.00%
 torch.Size([32, 16, 88, 158])
 torch.Size([32, 32, 42, 77])
 torch.Size([32, 2])

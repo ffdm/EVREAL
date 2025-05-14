@@ -55,7 +55,7 @@ dropped = 0
 min_seen_iou = 1
 
 # IOU threshold to send
-min_iou = 1
+min_iou = 0.8
 
 # Define Network
 class Net(nn.Module):
@@ -82,49 +82,34 @@ class Net(nn.Module):
         self.lif2 = snn.Leaky(beta=beta, spike_grad=spike_grad)
         self.fc1 = nn.Linear(32*42*77,2)
         self.lif3 = snn.Leaky(beta=beta, spike_grad=spike_grad)
-
-    def forward(self, x):
-
-        # Init hidden states at t=0
-        mem1 = self.lif1.init_leaky()
-        mem2 = self.lif2.init_leaky()
-        mem3 = self.lif3.init_leaky()
+    
+    def forward(self, x, mem1, mem2, mem3):
 
         # Record final layer
         spk3_rec = []
         mem3_rec = []
 
         for step in range(num_steps):
-            # Max pool of 8
-            """
-            cur1 = F.max_pool2d(x[:, step], 8)
-            cur1 = F.max_pool2d(self.conv1(cur1),2)
-            spk1, mem1 = self.lif1(cur1, mem1)
-            spk1 = torch.flatten(spk1, 1)
-            cur2 = self.fc1(spk1)
-            spk2, mem2 = self.lif2(cur2, mem2)
-            cur3 = self.fc2(spk2)
-            spk3, mem3 = self.lif3(cur3, mem3)
-            """
             # Do the maxpool before storing the data to decrease datasize
             cur1 = F.max_pool2d(x[:, step], 4)
             cur1 = F.max_pool2d(self.conv1(cur1),2)
+            #spk1, self.mem1 = self.lif1(cur1, self.mem1)
             spk1, mem1 = self.lif1(cur1, mem1)
 
             cur2 = F.max_pool2d(self.conv2(spk1),2)
+            #spk2, self.mem2 = self.lif2(cur2, self.mem2)
             spk2, mem2 = self.lif2(cur2, mem2)
             spk2 = torch.flatten(spk2, 1)
 
             cur3 = self.fc1(spk2)
+            #spk3, self.mem3 = self.lif3(cur3, self.mem3)
             spk3, mem3 = self.lif3(cur3, mem3)
-            print(mem1.shape)
-            print(mem2.shape)
-            print(mem3.shape)
 
             spk3_rec.append(spk3)
             mem3_rec.append(mem3)
 
-        return torch.stack(spk3_rec, dim=0), torch.stack(mem3_rec, dim=0)
+        return torch.stack(spk3_rec, dim=0), torch.stack(mem3_rec, dim=0), \
+                mem1, mem2, mem3
 
 net = Net().to(device)
 
@@ -349,10 +334,12 @@ def get_targets(path, prefix, bn):
         total_seen += 1
 
         ## ONLY DETECT OBJECT OR NOT FOR DEBUGGING
+        """
         if len(ann) > 0:
             targets[i] = 1
 
         continue
+        """
 
         ## ... might need a recurrent model otherwise ...
         ## and what should I do on the first input of the batch?
@@ -531,7 +518,7 @@ num_epochs = 5
 # Batches
 num_samples = 21
 max_train = 16
-num_batches = 10
+num_batches = 5
 
 # Batches per epoch (batches per scene)
 # Reserve 5 samples for test
@@ -583,6 +570,7 @@ def train(iter_counter):
 
                 # minibatch training loop
                 minibatches = 4
+
                 # number of iters per minibatch
                 num = int(len(train_data)/minibatches)
 
@@ -609,21 +597,27 @@ def train(iter_counter):
 
                     # forward
                     net.train()
-                    spk_rec, mem_rec = net(data)
+
+                    spk_rec = torch.zeros(num_steps,num,2).to(device)
+                    mem_rec = torch.zeros(num_steps,num,2).to(device)
+
+                    mem1 = torch.zeros(1, 16, 88, 158).to(device)
+                    mem2 = torch.zeros(1, 32, 42, 77).to(device)
+                    mem3 = torch.zeros(1, 2).to(device)
+
+                    for i, d in enumerate(data):
+                        sp, m, mem1, mem2, mem3 = net(d.unsqueeze(0), mem1, mem2, mem3)
+                        sp = sp.squeeze(1)
+                        m = m.squeeze(1)
+                        spk_rec[:, i] = sp
 
                     # loss
                     loss_val = loss_fn(spk_rec, targets)
                     _, idx = spk_rec.sum(dim=0).max(1)
 
-                    print("MEOW")
-                    print(f"Spk rec shape: {spk_rec.shape}")
-                    print(f"Mem rec shape: {mem_rec.shape}")
-                    print(f"targets shape: {targets.shape}")
-                    print(f"idx shape: {idx.shape}")
-                    sys.exit()
-
-                    print(spk_rec.sum(dim=0)[0])
-                    print(targets[0])
+                    print("----- 5 Points from Minibatch ------")
+                    for i in range(5):
+                        print(f"Target: {targets[i].item()}, spikes: {int(spk_rec.sum(dim=0)[i][0].item())}, {int(spk_rec.sum(dim=0)[i][1].item())}")
 
                     """
                     log_softmax_fn = nn.LogSoftmax(dim=-1)
@@ -643,6 +637,7 @@ def train(iter_counter):
 
                     # grad calc + weight update
                     optimizer.zero_grad()
+                    #loss_val.backward(retain_graph=True)
                     loss_val.backward()
                     optimizer.step()
             
@@ -668,12 +663,12 @@ def train(iter_counter):
     plt.plot(loss_hist)
     plt.xlabel("iter")
     plt.ylabel("minibatch loss")
-    plt.savefig("loss.pdf")
+    plt.savefig("loss_no_rst.pdf")
     plt.clf()
     plt.plot(test_acc_hist)
     plt.xlabel("iter")
     plt.ylabel("minibatch acc")
-    plt.savefig("acc.pdf")
+    plt.savefig("acc_no_rst.pdf")
 
 def final_acc():
 
@@ -723,7 +718,9 @@ def final_acc():
 
                     ones += int(torch.sum(test_targets, dim=0))
 
-                    minibatches = 2
+                    net.reset()
+
+                    minibatches = 128
                     # number of iters per minibatch
                     num = int(len(test_data)/minibatches)
 
@@ -754,7 +751,7 @@ end = time.time()
 print(f"Training loop took {end-start:.2f} s")
 
 # Save network weights
-torch.save(net.state_dict(), 'snn.pt')
+torch.save(net.state_dict(), 'snn_no_rst.pt')
 start = time.time()
 final_acc()
 end = time.time()
