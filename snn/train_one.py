@@ -44,9 +44,6 @@ objects = ['pedestrian', 'car', 'bicycle', 'bus', 'motorbike', 'truck',
 # CUDA for on MBIT
 device = torch.device("cuda")
 
-# Temporal Dynamics
-# Gets overwritten by wandb
-num_steps = 0
 
 spike_grad = surrogate.atan()
 
@@ -55,11 +52,20 @@ total_iou = 0
 total_seen = 0
 dropped = 0
 min_seen_iou = 1
-iou_thr = 0.95
-res = []
+res_50 = []
+res_95 = []
 
 # IOU threshold to send
+# Overwritten in run fn
 min_iou = 1
+
+# Gets overwritten by wandb
+# Prevous model arch remnant
+num_steps = 0
+
+# Overwritten in rn fn
+lr = 0
+
 
 # Define Network
 class Net(nn.Module):
@@ -84,40 +90,27 @@ class Net(nn.Module):
         # Output 32x84x154
         # MaxPool 32x42x77
         self.lif2 = snn.Leaky(beta=beta, spike_grad=spike_grad)
-        self.fc1 = nn.Linear(32*42*77,2)
+        self.fc1 = nn.Linear(32*42*77,1)
         self.lif3 = snn.Leaky(beta=beta, spike_grad=spike_grad)
     
-    def forward(self, x):
-        global num_steps
+    def forward(self, x, mem1, mem2, mem3):
+        # Do the maxpool before storing the data to decrease datasize
+        # remant of multiple steps (stored data format)
+        cur1 = F.max_pool2d(x[:, 0], 4)
+        cur1 = F.max_pool2d(self.conv1(cur1),2)
+        #spk1, self.mem1 = self.lif1(cur1, self.mem1)
+        spk1, mem1 = self.lif1(cur1, mem1)
 
-        mem1 = self.lif1.init_leaky()
-        mem2 = self.lif2.init_leaky()
-        mem3 = self.lif3.init_leaky()
+        cur2 = F.max_pool2d(self.conv2(spk1),2)
+        #spk2, self.mem2 = self.lif2(cur2, self.mem2)
+        spk2, mem2 = self.lif2(cur2, mem2)
+        spk2 = torch.flatten(spk2, 1)
 
-        # Record final layer
-        spk3_rec = []
-        mem3_rec = []
+        cur3 = self.fc1(spk2)
+        #spk3, self.mem3 = self.lif3(cur3, self.mem3)
+        spk3, mem3 = self.lif3(cur3, mem3)
 
-        for step in range(num_steps):
-            # Do the maxpool before storing the data to decrease datasize
-            cur1 = F.max_pool2d(x[:, step], 4)
-            cur1 = F.max_pool2d(self.conv1(cur1),2)
-            #spk1, self.mem1 = self.lif1(cur1, self.mem1)
-            spk1, mem1 = self.lif1(cur1, mem1)
-
-            cur2 = F.max_pool2d(self.conv2(spk1),2)
-            #spk2, self.mem2 = self.lif2(cur2, self.mem2)
-            spk2, mem2 = self.lif2(cur2, mem2)
-            spk2 = torch.flatten(spk2, 1)
-
-            cur3 = self.fc1(spk2)
-            #spk3, self.mem3 = self.lif3(cur3, self.mem3)
-            spk3, mem3 = self.lif3(cur3, mem3)
-
-            spk3_rec.append(spk3)
-            mem3_rec.append(mem3)
-
-        return torch.stack(spk3_rec, dim=0), torch.stack(mem3_rec, dim=0)
+        return spk3, mem1, mem2, mem3
 
 
 def load_pretrained(file):
@@ -517,7 +510,8 @@ def eval_model(net, path, prefix, bn, total, correct, dropped, ones):
     global total_iou
     global min_seen_iou
     global iou_thr
-    global res
+    global res_50
+    global res_95
 
     anns = np.load(path+str(num_steps)+'_steps/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
                     allow_pickle=True)
@@ -531,12 +525,22 @@ def eval_model(net, path, prefix, bn, total, correct, dropped, ones):
     # Send extra one after switching
     prev = 1
 
+    # Reset membrane potentials every batch
+    #mem1 = torch.zeros(1, 16, 88, 158).to(device)
+    #mem2 = torch.zeros(1, 32, 42, 77).to(device)
+    #mem3 = torch.zeros(1, 1).to(device)
+
+    mem1 = net.lif1.init_leaky()
+    mem2 = net.lif2.init_leaky()
+    mem3 = net.lif3.init_leaky()
+
     for i, ann in enumerate(anns):
         total += 1
 
-        spk_rec,_=net(events[i].unsqueeze(0))
-        _, send = spk_rec.sum(dim=0).max(1)
-
+        spk,mem1,mem2,mem3=net(events[i].unsqueeze(0),mem1,mem2,mem3)
+        
+        send = int(spk)
+        
         if send == int(targets[i]):
             correct += 1
 
@@ -591,7 +595,8 @@ def eval_model(net, path, prefix, bn, total, correct, dropped, ones):
 
         prev = send
 
-        res.append(get_single_image_results(bbox, bbox_p, iou_thr))
+        res_50.append(get_single_image_results(bbox, bbox_p, 0.5))
+        res_95.append(get_single_image_results(bbox, bbox_p, 0.95))
 
     return total, correct, dropped, ones
 
@@ -692,13 +697,23 @@ def get_targets_visual(path, prefix, bn):
 # loss_fn = SF.mse_membrane_loss()
 #loss_fn = SF.mse_count_loss(correct_rate=1, incorrect_rate=0.1)
 #loss_fn = SF.mse_count_loss()
-loss_fn = SF.ce_count_loss()
+#loss_fn = SF.ce_count_loss()
+loss_fn = nn.BCELoss()
+# Custom loss function
+class binary_loss(nn.Module):
+    def __init__(self):
+        super(binary_loss, self).__init__()
+
+    def forward(self, preds, targets):
+        loss = torch.sum(preds == targets)
+        return loss
+
 
 # Num epochs to stop at
-num_epochs = 10
+num_epochs = 99
 
 # Num batches per epoch to stop at
-num_batches = 20
+num_batches = 99
 
 loss_hist = []
 test_acc_hist = []
@@ -707,10 +722,11 @@ counter = 0
 
 # outer training loop
 def train(iter_counter, net):
+    global lr
     ones = 0
     total = 0
 
-    optimizer = torch.optim.Adam(net.parameters(), lr=2e-5, betas=(0.9, 0.99))
+    optimizer = torch.optim.Adam(net.parameters(), lr=lr, betas=(0.9, 0.99))
 
     for series in train_series:
         print(f" SERIES {series} ".center(50, "#"))
@@ -750,7 +766,7 @@ def train(iter_counter, net):
                 total += batch_size
 
                 # minibatch training loop
-                minibatches = 4
+                minibatches = 1
 
                 # number of iters per minibatch
                 num = int(len(train_data)/minibatches)
@@ -770,18 +786,27 @@ def train(iter_counter, net):
                     # forward
                     net.train()
 
-                    spk_rec, mem_rec = net(data)
+                    spk_rec = torch.zeros(num).to(device)
 
-                    # Membrane loss, pass last layer membranes
-                    # loss_val = loss_fn(mem_rec, targets)
-                    # Spike loss, pass spk_rec
-                    loss_val = loss_fn(spk_rec, targets)
+                    #mem1 = torch.zeros(1, 16, 88, 158).to(device)
+                    #mem2 = torch.zeros(1, 32, 42, 77).to(device)
+                    #mem3 = torch.zeros(1, 1).to(device)
 
-                    _, idx = spk_rec.sum(dim=0).max(1)
+                    # try:
+                    mem1 = net.lif1.init_leaky()
+                    mem2 = net.lif2.init_leaky()
+                    mem3 = net.lif3.init_leaky()
 
-                    print("----- Inference from Minibatch ------")
+                    for i, d in enumerate(data):
+                        spk_rec[i], mem1, mem2, mem3 = net(d.unsqueeze(0), mem1, mem2, mem3)
+
+                    loss_val = loss_fn(spk_rec.double(), targets.double())
+
+                    idx = spk_rec
+
+                    print("----- Preds vs Targets from Minibatch ------")
                     for i in range(num):
-                        print(f"Target: {targets[i].item()}, spikes: {int(spk_rec.sum(dim=0)[i][0].item())}, {int(spk_rec.sum(dim=0)[i][1].item())}")
+                        print(f"Target: {targets[i].item()}, spike: {int(spk_rec[i])}")
 
                     # grad calc + weight update
                     optimizer.zero_grad()
@@ -817,8 +842,8 @@ def final_acc(net):
     ones=0
 
     # set to 99 to do all of them
-    num_test_scenes = 20
-    num_test_batches = 20
+    num_test_scenes = 99
+    num_test_batches = 99
 
     # FINAL ACCURACY MEASURE
     # Target accuracy
@@ -860,14 +885,17 @@ def final_acc(net):
                                                                dropped, ones)
                     test_batch_counter += 1
                 test_scene_counter += 1
-        precision, recall = calc_precision_recall(res)
+        precision_50, recall_50 = calc_precision_recall(res_50)
+        precision_95, recall_95 = calc_precision_recall(res_95)
         wandb.log({
             "acc": (100*correct/total), 
-            "precision": precision,
-            "recall": recall,
+            "precision_50": precision_50,
+            "recall_50": recall_50,
+            "precision_95": precision_95,
+            "recall_95": recall_95,
             "dropped": dropped/total, 
             "ones": ones/total, 
-            "score": precision*(dropped/total)
+            "score": (2*precision_95 + (dropped/total))/3
         })
 
         print(f"Total correctly classified test set images: {correct}/{total}")
@@ -880,28 +908,30 @@ def run():
     global run_cnt
     global num_steps
     global min_iou
+    global lr
+
     wandb.init()
 
-    beta = wandb.config['beta']
+    beta = 1
+    #beta = wandb.config['beta']
     wandb.log({"beta":beta})
-
+    
+    #min_iou = 0.9
     min_iou = wandb.config['min_iou']
     wandb.log({"min_iou":min_iou})
 
-    num_steps = 8
-    #num_steps = wandb.config['num_steps']
-    #wandb.log({"num_steps":num_steps})
+    #lr = 2e-5
+    lr = wandb.config['lr']
+    wandb.log({"lr":lr})
+
+    num_steps = 1
 
     net = Net(beta).to(device)
 
     start = time.time()
     train(counter, net)
-    #iterate_through()
     end = time.time()
     print(f"Training loop took {end-start:.2f} s")
-
-    # Save network weights
-    torch.save(net.state_dict(), 'snn_no_rst'+str(run_cnt)+'.pt')
 
     start = time.time()
     final_acc(net) # target accuracy
@@ -915,19 +945,16 @@ config = {
     "method": "random",
     "metric": {"goal": "maximize", "name": "acc"},
     "parameters": {
-        "beta": {
-            "min": 0.9,
-            "max": 1.0
-        },
-        "min_iou": {
-            "min": 0.9,
-            "max": 1.0
-        },
 
-        #"num_steps": {"values": [1, 2, 4, 8]},
+        #"beta": {"min": 0.5,"max": 1.0},
+
+        "lr": {"min": 0.0000001,"max": 0.01},
+
+        "min_iou": {"min": 0.8,"max": 1.0},
+
     },
 }
 
-sweep_id = wandb.sweep(sweep=config, project="8s_nomem_beta_iou_2")
+sweep_id = wandb.sweep(sweep=config, project="bce IF sweep iou,lr")
 
-wandb.agent(sweep_id, function=run, count=20)
+wandb.agent(sweep_id, function=run, count=10)

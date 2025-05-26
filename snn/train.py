@@ -929,7 +929,10 @@ config = {
             "min": 0.9,
             "max": 1.0
         },
-        #"num_steps": {"values": [1, 2, 4, 8]},
+        "min_iou": {
+            "min": 0.8,
+            "max": 1.0
+        },
     },
 }
 
