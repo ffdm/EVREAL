@@ -54,6 +54,7 @@ total_seen = 0
 dropped = 0
 correct = 0
 min_seen_iou = 1
+iou_thr = 0.5
 res = []
 
 # IOU threshold to send
@@ -775,7 +776,7 @@ def eval_model(path, prefix, bn):
 
         prev = send
 
-        res.append(get_single_image_results(bbox, bbox_p, 0.95))
+        res.append(get_single_image_results(bbox, bbox_p, iou_thr))
 
 
 def iterate_through():
@@ -817,6 +818,7 @@ def iterate_through():
 
             test_scene_counter += 1
 
+        print("Precision, recall: ")
         print(calc_precision_recall(res))
         print(f"Avg IOU: {total_iou/total_seen}, lowest IOU: {min_seen_iou}")
         print(f"dropped: {dropped}/{total_seen}={dropped/total_seen:.4f}")

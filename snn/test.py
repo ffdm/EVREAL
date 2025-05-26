@@ -1,86 +1,142 @@
-import h5py
-import cv2
-import numpy as np
-import numba
+# imports
 import sys
-from tqdm import tqdm
+import snntorch as snn
+from snntorch import functional as SF
+from snntorch import spikeplot as splt
+from snntorch import spikegen
+from snntorch.functional import quant
+from snntorch import surrogate
+import random
+
 import torch
-import skimage.measure
-from t5 import Net
+import torch.nn as nn
+import torch.nn.functional as F
+import time
 
-dataset_path = '/data1/fdm/eTraM/Static/HDF5/'
-scene_path = 'train_h5_1/'
+import matplotlib.pyplot as plt
+import numpy as np
+import cv2
+from tqdm import tqdm
+import blosc2
+from glob import glob
+import os
 
+import functools
+print = functools.partial(print, flush=True)
+
+
+# dataloader arguments
+batch_size = 128
+# 30 FPS using provided annotations
+fps = 30
+
+data_path = '/data1/fdm/eTraM/Static/HDF5/'
 test_series = ['test_h5_1', 'test_h5_2']
 train_series = ['train_h5_1', 'train_h5_2', 'train_h5_3', 'train_h5_4',
                 'train_h5_5']
 
-class EventList:
-    def __init__(self):
-        self.x = []
-        self.y = []
-        self.h = []
-        self.w = []
-        self.p = []
-        self.t = []
-        self.ann = []
+# List of objects of interest
+objects = ['pedestrian', 'car', 'bicycle', 'bus', 'motorbike', 'truck',
+           'tram', 'wheelchair']
 
-class AnnotationFrame:
-    def __init__(self):
-        self.t = []
-        self.x = []
-        self.y = []
-        self.w = []
-        self.h = []
-        self.class_id = []
+# CUDA for on MBIT
+device = torch.device("cuda")
 
-# PROGRAM FOR PREPROCESSING OF EVENTS AND
-# SAVING INTO BLOSC FILES FOR FAST TRAINING
-
-# Hyper params
+# Temporal Dynamics
 num_steps = 25
-batch_size = 128
-fps = 30
-names = ["pedestrian", "car", "bicycle", "bus", "motorbike", "truck", "tram",
-         "wheelchair"]
+beta = 0.95
 
-def set(path, scene, evlist):
-    ev_path = path+scene+'_td.h5'
-    ann_path = path+scene+'_bbox.npy'
+spike_grad = surrogate.atan()
 
-    f_ev = h5py.File(ev_path, 'r')
-    events = f_ev['events']
-    evlist.x = events['x'][()]
-    evlist.y = events['y'][()]
-    evlist.h = events['height'][()]
-    evlist.w = events['width'][()]
-    evlist.p = events['p'][()]
-    evlist.t = events['t'][()]
+# Global vars for target gen
+total_iou = 0
+total_seen = 0
+dropped = 0
+correct = 0
+min_seen_iou = 1
+iou_thr = 0.5
+res = []
 
-    evlist.ann = np.load(ann_path)
+# IOU threshold to send
+min_iou = 0.8
 
-from bisect import bisect_left  
-# l is list
-def Binary_Search(l, x):
-    i = bisect_left(l, x)
-    if i:
-        return (i-1)
-    else:
-        return -1
+# Define Network
+class Net(nn.Module):
+    def __init__(self):
+        super().__init__()
+        """
+        self.conv1 = nn.Conv2d(2, 1, 65)
+        self.lif1 = snn.Leaky(beta=beta, spike_grad=spike_grad)
 
-# Render events on image
-@numba.jit(nopython=True)
-def rei(image, x, y, p):
-    for x_, y_, p_ in zip(x,y,p):
-        if p_ == 0:
-            image[y_, x_] = np.array([0,0,255])
-        else:
-            image[y_, x_] = np.array([255,0,0])
+        self.fc1 = nn.Linear(624, 128)
+        self.lif2 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+
+        self.fc2 = nn.Linear(128, 2)
+        self.lif3 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+        """
+        # Input 2x180x320
+        self.conv1 = nn.Conv2d(2, 16, 5)
+        # Output 16x176x316
+        # MaxPool 16x88x158
+        self.lif1 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+        self.conv2 = nn.Conv2d(16, 32, 5)
+        # Output 32x84x154
+        # MaxPool 32x42x77
+        self.lif2 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+        self.fc1 = nn.Linear(32*42*77,2)
+        self.lif3 = snn.Leaky(beta=beta, spike_grad=spike_grad)
+
+    def forward(self, x, mem1, mem2, mem3):
+
+        # Record final layer
+        spk3_rec = []
+        mem3_rec = []
+
+        for step in range(num_steps):
+            # Do the maxpool before storing the data to decrease datasize
+            cur1 = F.max_pool2d(x[:, step], 4)
+            cur1 = F.max_pool2d(self.conv1(cur1),2)
+            spk1, mem1 = self.lif1(cur1, mem1)
+
+            cur2 = F.max_pool2d(self.conv2(spk1),2)
+            spk2, mem2 = self.lif2(cur2, mem2)
+            spk2 = torch.flatten(spk2, 1)
+
+            cur3 = self.fc1(spk2)
+            spk3, mem3 = self.lif3(cur3, mem3)
+
+            spk3_rec.append(spk3)
+            mem3_rec.append(mem3)
+
+        return torch.stack(spk3_rec, dim=0), torch.stack(mem3_rec, dim=0), \
+                mem1, mem2, mem3
+
+net = Net().to(device)
+
+def load_pretrained(file):
+    net.load_state_dict(torch.load(file))
+    net.eval()
+
+# Goal: create represention of events as follows:
+# Want to divide up the number of time bins between each frame
+# Frames are defined by FPS, time bins defined by num_steps
+# dim should be [N, C, H, W] = [#frames, 2, 720, 1280]
+
+#print(x.shape)
+
+#########################################
+# FUNCTIONS FOR DISPLAYING EVENTS AND BBs
+#########################################
+
+def rei_frame(image, events):
+    for t in tqdm(range(events.shape[0])):
+        image[np.where(events[t,0] == 1)] = np.array([0,0,255])
+        image[np.where(events[t,1] == 1)] = np.array([255,0,0])
     return image
 
 def draw_detection(image, bbox, label):
     """
-    draw bounding box and label on the image.
+    Draw bounding box and label on the image.
     """
     bbox = list(map(int, bbox))
     x1, y1, x2, y2 = bbox
@@ -88,197 +144,692 @@ def draw_detection(image, bbox, label):
     cv2.putText(image, f"{label}", (x1, y1 - 10),
                 cv2.FONT_HERSHEY_SIMPLEX, 0.5, (0, 255, 0), 1)
 
-def render_events_and_boxes(beg, end, evlist):
+def draw_bbox_array(image, bbox, label):
     """
-    beg and end of sequence in frames
+    Draw bounding box and label on the image.
     """
-    ind = 0
-    ann_idx = 0
-    ti = beg*(1e6/fps)
+    for i, box in enumerate(bbox):
+        x1, y1, x2, y2 = box
 
-    # Set previous indices
-    ann_idx = Binary_Search(evlist.ann['t'], ti)
-    ind_p = Binary_Search(evlist.t, ti)
-    if ind_p == -1: ind_p = 0
-    if ann_idx == -1: ann_idx = 0
+        x1 = int(x1)
+        y1 = int(y1)
+        x2 = int(x2)
+        y2 = int(y2)
 
-    for i in range(beg, end):
-        black_image = np.zeros((evlist.h,evlist.w,3))
-        # Time in us to stop binning
-        ti += 1e6/fps
+        cv2.rectangle(image, (x1, y1), (x2, y2), (255, 255, 255), 1)
+        if type(label) is not str:
+            # MEANS NOT SENT
+            if i < len(label):
+                cv2.putText(image, f"IoU: {label[i]:.2f}", (x2 - 80, y2 + 17),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
+        elif label == 'send':
+            cv2.putText(image, f"IoU: 1.00", (x2 - 75, y2 + 17),
+                    cv2.FONT_HERSHEY_SIMPLEX, 0.5, (255, 255, 255), 1)
 
-        # Previous index
-        ind = Binary_Search(evlist.t, ti)
-
-        if (ind == -1): print("Ind not found")
-        else: print(ind)
-
-        # Ind is last index
-        frame = rei(black_image, evlist.x[ind_p:ind+1], evlist.y[ind_p:ind+1],
-                    evlist.p[ind_p:ind+1]).astype(np.uint8)
-        ind_p = ind
-
-        while (evlist.ann['t'][ann_idx] < ti):
-            x1 = evlist.ann['x'][ann_idx]
-            y1 = evlist.ann['y'][ann_idx]
-            x2 = x1 + evlist.ann['w'][ann_idx]
-            y2 = y1 + evlist.ann['h'][ann_idx]
-            draw_detection(frame, (x1, y1, x2, y2), names[evlist.ann['class_id'][ann_idx]])
-            ann_idx += 1
-            if ann_idx >= len(evlist.ann['t']): break
-
-        #cv2.imwrite(f"output/frame_{str(i).zfill(5)}.png", frame)
-        cv2.imshow("x", frame)
-        cv2.waitKey(0)
-
-# render events on image from frame
-def rei_frame(image, events):
-    print(events.shape)
-    print(image.shape)
-    for t in tqdm(range(events.shape[0])):
-        image[np.where(events[t,0] == 1)] = np.array([0,0,255])
-        image[np.where(events[t,1] == 1)] = np.array([255,0,0])
-        """
-        for x in range(events.shape[3]):
-            for y in range(events.shape[2]):
-                if events[t, 0, y, x]:
-                    image[y,x] = np.array([0,0,255])
-                elif events[t, 1, y, x]:
-                    image[y,x] = np.array([255,0,0])
-        """
-    return image
+def draw_send(image, send):
     """
-    for x_, y_, p_ in zip(x,y,p):
-        if p_ == 0:
-            image[y_, x_] = np.array([0,0,255])
-        else:
-            image[y_, x_] = np.array([255,0,0])
-    return image
+    image: Image to draw
+    send: Boolean for if to send or not
     """
+    h = image.shape[0]
+    w = image.shape[1]
+    if send:
+        cv2.rectangle(image, (0,0), (w, h), (0,255,0), 5)
+        cv2.putText(image, "Sent", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 255, 0), 2)
+    else:
+        cv2.rectangle(image, (0,0), (w, h), (0,0,255), 5)
+        cv2.putText(image, "Skipped", (10, 40),
+                cv2.FONT_HERSHEY_SIMPLEX, 1, (0, 0, 255), 2)
 
-def render_boxes(events, anns):
-    """
-    Beg and End of sequence in frames
-    """
+def render_frame_on_image(events, targets, image):
 
-    black_image = np.zeros((events.shape[2], events.shape[3], 3))
+    frame = rei_frame(image, events)
 
-    # Ind is last index
-    frame = rei_frame(black_image, events).astype(np.uint8)
-
-    print(len(anns.t))
-
-    for i in range(len(anns.t)):
-
-        x1 = anns.x[i]
-        y1 = anns.y[i]
-        x2 = x1 + anns.w[i]
-        y2 = y1 + anns.h[i]
-        print(names[anns.class_id[i]])
-        draw_detection(frame, (x1, y1, x2, y2), names[anns.class_id[i]])
-
-    #cv2.imwrite(f"output/frame_{str(i).zfill(5)}.png", frame)
-    cv2.imshow("x", frame)
-    cv2.waitKey(0)
-
-
-# Process time bin for one h5 file
-# First, try saving entire file, to a file
-def time_bin(beg, end, ev):
-    # BEG and END are in frames
-    tn = beg*1e6/fps
-    ind = Binary_Search(ev.t, tn)
-    if ind == -1: ind = 0
-    ind_p = ind
-
-    ann_ind = Binary_Search(ev.ann['t'], tn)
-    if ann_ind == -1: ann_ind = 0
-    ann_ind_p = ann_ind
-
-    print(f" LOADING {end-beg} DATA VECTORS ".center(50, "#"))
-    events = np.zeros((end-beg, num_steps, 2, ev.h, ev.w), dtype='b')
-    targets = np.zeros(end-beg, dtype='b')
-    anns = []
-
-    for i in tqdm(range(beg, end)):
-        ann_frame = AnnotationFrame()
-        for n in range(num_steps):
-            # Max time in us for bin n
-            tn += 1e6/fps/num_steps
-            ind_p = ind
-            while(ev.t[ind] < tn):
-                ind += 1
-                if ind >= len(ev.t): break
-            x_bin = np.clip(ev.x[ind_p:ind+1], a_min=0,
-                            a_max=(events.shape[4]-1))
-            y_bin = np.clip(ev.y[ind_p:ind+1], a_min=0,
-                            a_max=(events.shape[3]-1))
-            p_bin = np.clip(ev.p[ind_p:ind+1], a_min=0, a_max=1)
-            events[i-beg, n, p_bin, y_bin, x_bin] = 1
-
-        ann_ind = Binary_Search(ev.ann['t'], tn)
-        if (ann_ind > ann_ind_p):
-            # Means there is a dection in frame
-            targets[i-beg] = 1
-            ann_frame.t = ev.ann['t'][ann_ind_p:ann_ind+1]
-            ann_frame.x = ev.ann['x'][ann_ind_p:ann_ind+1]
-            ann_frame.y = ev.ann['y'][ann_ind_p:ann_ind+1]
-            ann_frame.w = ev.ann['w'][ann_ind_p:ann_ind+1]
-            ann_frame.h = ev.ann['h'][ann_ind_p:ann_ind+1]
-            ann_frame.class_id = ev.ann['class_id'][ann_ind_p:ann_ind+1]
-
-        ann_ind_p = ann_ind
-        anns.append(ann_frame)
+    for ann in targets:
+        x1 = ann['x']
+        y1 = ann['y']
+        x2 = x1 + ann['w']
+        y2 = y1 + ann['h']
+        label = f"{ann['class_confidence']:.2f}: {objects[ann['class_id']]}"
+        draw_detection(frame, (x1, y1, x2, y2), label)
     
-    return [events, targets, anns]
+    return frame
 
-ev = EventList()
-path = dataset_path+scene_path
+#########################################
+# FUNCTIONS FOR GETTING EVENTS AND TARGETS
+#########################################
 
-#render_events_and_boxes(0, 500, evlist)
-# Need to get the number of frames in thingy.
-# Just do t[-1]*fps/1e6
-# BLOSC TO THE RESCUEEEEE
-# FAST AND TAKES UP LIKE NO SPACE LETS GOO
-#set(path, prefix, 1, ev)
-#render_events_and_boxes(2950, 3000, ev)
+import scipy.optimize
+import numpy as np
 
-#beg = 100
-#events, targets = time_bin(beg, beg+batch_size, ev)
+def bbox_iou(boxA, boxB):
+  # https://www.pyimagesearch.com/2016/11/07/intersection-over-union-iou-for-object-detection/
+  # ^^ corrected.
 
-import time
-import blosc2
-import os
+  # Determine the (x, y)-coordinates of the intersection rectangle
+  xA = max(boxA[0], boxB[0])
+  yA = max(boxA[1], boxB[1])
+  xB = min(boxA[2], boxB[2])
+  yB = min(boxA[3], boxB[3])
 
-#for j in range(1,21):
-for series in train_series:
-    path = dataset_path+series+'/'
-    print(f" LOADING SERIES {series} ".center(50, "#"))
-    if series == 'train_h5_1': continue
-    #if series == 'train_h5_2': continue
-    #if series == 'train_h5_3': continue
-    #if series == 'train_h5_4': continue
+  interW = xB - xA + 1
+  interH = yB - yA + 1
 
-    for filename in os.listdir(path):
-        if filename.endswith('_td.h5'):
-            scene = filename.split('_td.h5')[0]
-            set(path, scene, ev)
+  # Correction: reject non-overlapping boxes
+  if interW <=0 or interH <=0 :
+    return -1.0
 
-            num_frames = int(ev.t[-1]*fps/1e6) 
-            for i in range(0, num_frames-batch_size, batch_size):
-                batch_num = int(i/batch_size)
-                print(f"LOADING SCENE {scene}, BATCH {batch_num}")
-
-                events, targets, anns = time_bin(i, i+batch_size, ev)
-                for j in range(len(events)):
-                    render_boxes(events[j], anns[j])
+  interArea = interW * interH
+  boxAArea = (boxA[2] - boxA[0] + 1) * (boxA[3] - boxA[1] + 1)
+  boxBArea = (boxB[2] - boxB[0] + 1) * (boxB[3] - boxB[1] + 1)
+  iou = interArea / float(boxAArea + boxBArea - interArea)
+  return iou
 
 
+def match_bboxes(bbox_gt, bbox_pred, IOU_THRESH=0):
+    '''
+    Given sets of true and predicted bounding-boxes,
+    determine the best possible match.
+    Parameters
+    ----------
+    bbox_gt, bbox_pred : N1x4 and N2x4 np array of bboxes [x1,y1,x2,y2].
+      The number of bboxes, N1 and N2, need not be the same.
+
+    Returns
+    -------
+    (idxs_true, idxs_pred, ious, labels)
+        idxs_true, idxs_pred : indices into gt and pred for matches
+        ious : corresponding IOU value of each match
+        labels: vector of 0/1 values for the list of detections
+    '''
+    n_true = bbox_gt.shape[0]
+    n_pred = bbox_pred.shape[0]
+    MAX_DIST = 1.0
+    MIN_IOU = 0.0
+
+    # NUM_GT x NUM_PRED
+    iou_matrix = np.zeros((n_true, n_pred))
+    for i in range(n_true):
+        for j in range(n_pred):
+            iou_matrix[i, j] = bbox_iou(bbox_gt[i,:], bbox_pred[j,:])
+
+    if n_pred > n_true:
+      # there are more predictions than ground-truth - add dummy rows
+      diff = n_pred - n_true
+      iou_matrix = np.concatenate( (iou_matrix,
+                                    np.full((diff, n_pred), MIN_IOU)),
+                                  axis=0)
+
+    if n_true > n_pred:
+      # more ground-truth than predictions - add dummy columns
+      diff = n_true - n_pred
+      iou_matrix = np.concatenate( (iou_matrix,
+                                    np.full((n_true, diff), MIN_IOU)),
+                                  axis=1)
+
+    # call the Hungarian matching
+    idxs_true, idxs_pred = scipy.optimize.linear_sum_assignment(1 - iou_matrix)
+
+    if (not idxs_true.size) or (not idxs_pred.size):
+        ious = np.array([])
+    else:
+        ious = iou_matrix[idxs_true, idxs_pred]
+
+    # remove dummy assignments
+    sel_pred = idxs_pred<n_pred
+    idx_pred_actual = idxs_pred[sel_pred]
+    idx_gt_actual = idxs_true[sel_pred]
+    ious_actual = iou_matrix[idx_gt_actual, idx_pred_actual]
+    sel_valid = (ious_actual > IOU_THRESH)
+    label = sel_valid.astype(int)
+
+    return idx_gt_actual[sel_valid], idx_pred_actual[sel_valid], ious_actual[sel_valid], label
+
+def get_events(path, prefix, bn):
+    events = blosc2.load_array(path+'b2/'+prefix+'_ev_b'+str(bn).zfill(2)+'.b2')
+    return torch.Tensor(events).to(device)
+
+def get_targets(path, prefix, bn):
+    global total_iou
+    global dropped
+    global min_seen_iou
+    targets = np.zeros(batch_size)
+    
+    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
+                    allow_pickle=True)
+
+    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
+    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
+
+    for i, ann in enumerate(anns):
+
+        if len(ann) > 0:
+            targets[i] = 1
+
+        continue
+
+        if len(ann_p) != len(ann) or i == 0:
+
+            # SNN Sends if # anns change or first frame
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+            continue
+
+        x1_p = ann_p['x']
+        y1_p = ann_p['y']
+        x2_p = x1_p + ann_p['w']
+        y2_p = y1_p + ann_p['h']
+        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+        x1 = ann['x']
+        y1 = ann['y']
+        x2 = x1 + ann['w']
+        y2 = y1 + ann['h']
+        bbox = np.column_stack((x1, y1, x2, y2))
+
+        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+        if len(ious) > 0: iou_min = np.min(ious)
+        else: 
+            iou_min = min_seen_iou
+
+        if iou_min < min_iou or len(ious) < len(ann):
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+        else:
+            total_iou += iou_min
+            dropped += 1
+
+            if (min_seen_iou > iou_min):
+                min_seen_iou = iou_min
+
+    return torch.Tensor(targets)
 
 
-                # if output of model is 1, update the prediction bounding boxes
-                # compare with the ground truth bounding boxes for the frame
-                # using IOU
+
+def eval_visual(path, prefix, bn):
+    global total_iou
+    global total_seen
+    global dropped
+    global min_seen_iou
+    global correct 
+
+    anns_batch = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
+                    allow_pickle=True)
+    events_batch = get_events(path, prefix, bn)
+    targets_batch = get_targets(path, prefix, bn)
+
+    # TARGET GENERATION METHODOLOGY
+    # FIRST IMAGE ALWAYS IS MARKED AS A 1 to encourage SNN to send more
+    # often than not. The target is then saved. 
+    # If the number of BBs changes? SNN sends
+    # Else, the iou is calciulated from previous send
+    # If it is below a threshold? the SNN sends
+    minibatches = 4
+    num = int(len(targets_batch)/minibatches)
+
+    for minibatch in range(minibatches):
+        start = minibatch*num
+        end = start + num
+        events = events_batch[start:end].to(device)
+        targets = targets_batch[start:end].to(device)
+        anns = anns_batch[start:end]
+
+        # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
+        ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
+
+        # Reset membrane pots
+        mem1 = torch.zeros(1, 16, 88, 158).to(device)
+        mem2 = torch.zeros(1, 32, 42, 77).to(device)
+        mem3 = torch.zeros(1, 2).to(device)
+
+        for i, ann in enumerate(anns):
+            total_seen += 1
+
+            # black image
+            image = np.zeros((events_batch.shape[3], events_batch.shape[4], 3)) 
+
+            x1_p = ann_p['x']
+            y1_p = ann_p['y']
+            x2_p = x1_p + ann_p['w']
+            y2_p = y1_p + ann_p['h']
+            bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+            x1 = ann['x']
+            y1 = ann['y']
+            x2 = x1 + ann['w']
+            y2 = y1 + ann['h']
+            bbox = np.column_stack((x1, y1, x2, y2))
+
+            spk_rec, _, mem1, mem2, mem3 = net(events[i].unsqueeze(0), mem1, mem2, mem3)
+            _, send = spk_rec.sum(dim=0).max(1)
+
+            if send == int(targets[i]):
+                correct += 1
+
+            cv2.putText(image, 
+            f"Target: {int(targets[i])}",
+            (600, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            cv2.putText(image, 
+            f"Correct: {correct}/{total_seen} = {100*correct/total_seen:.2f}%",
+            (10, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            if (send == 1):
+                ann_p = ann
+                total_iou += 1
+                draw_bbox_array(image, bbox, 'send')
+                draw_send(image, 1)
+
+            else:
+
+                (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+                if len(ious) > 0: 
+                    iou_min = np.min(ious)
+                    draw_bbox_array(image, bbox_p, ious)
+                else: 
+                    iou_min = min_seen_iou
+
+                total_iou += iou_min
+                dropped += 1
+
+                draw_send(image, 0)
+
+                if (min_seen_iou > iou_min):
+                    print(f"New Min IoU: {iou_min}")
+                    min_seen_iou = iou_min
+
+            cv2.putText(image, 
+            f"{100*dropped/total_seen:.2f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            frame = render_frame_on_image(events[i].cpu(), ann, image) 
+            evalname = f'./evalframes/{str(total_seen).zfill(5)}_{prefix}_b{bn}_{str(i).zfill(3)}'
+            cv2.imwrite(evalname+'.png', frame)
+            #cv2.imshow("Frame", frame)
+            #cv2.waitKey(0)
 
 
+def get_targets_visual(path, prefix, bn):
+    global total_iou
+    global total_seen
+    global dropped
+    global min_seen_iou
+    targets = np.zeros(batch_size)
+
+    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
+                    allow_pickle=True)
+    events = get_events(path, prefix, bn)
+
+    # TARGET GENERATION METHODOLOGY
+    # FIRST IMAGE ALWAYS IS MARKED AS A 1 to encourage SNN to send more
+    # often than not. The target is then saved. 
+    # If the number of BBs changes? SNN sends
+    # Else, the iou is calciulated from previous send
+    # If it is below a threshold? the SNN sends
+
+    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
+    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
+
+    for i, ann in enumerate(anns):
+        total_seen += 1
+
+        # black image
+        image = np.zeros((events.shape[3], events.shape[4], 3)) 
+
+        x1_p = ann_p['x']
+        y1_p = ann_p['y']
+        x2_p = x1_p + ann_p['w']
+        y2_p = y1_p + ann_p['h']
+        bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+        x1 = ann['x']
+        y1 = ann['y']
+        x2 = x1 + ann['w']
+        y2 = y1 + ann['h']
+        bbox = np.column_stack((x1, y1, x2, y2))
+
+        if len(ann_p) != len(ann) or i == 0:
+
+            # SNN Sends if # anns change or first frame
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+            draw_bbox_array(image, bbox, 'send')
+            draw_send(image, 1)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            frame = render_frame_on_image(events[i].cpu(), ann, image) 
+            outname = f'./targetframes/{str(total_seen).zfill(5)}_{prefix}_b{bn}_{str(i).zfill(3)}'
+            cv2.imwrite(outname+'.png', frame)
+
+            continue
+
+        (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+        if len(ious) > 0: iou_min = np.min(ious)
+        else: 
+            iou_min = min_seen_iou
+
+        if iou_min < min_iou or len(ious) < len(ann):
+            targets[i] = 1
+            ann_p = ann
+            total_iou += 1
+
+            draw_bbox_array(image, bbox, 'send')
+            draw_send(image, 1)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+        else:
+            total_iou += iou_min
+            dropped += 1
+
+            draw_bbox_array(image, bbox_p, ious)
+            draw_send(image, 0)
+
+            cv2.putText(image, 
+            f"{dropped/total_seen:.3f}% dropped",
+            (1000, 710), cv2.FONT_HERSHEY_SIMPLEX, 1, (255, 255, 255), 2)
+
+            if (min_seen_iou > iou_min):
+                min_seen_iou = iou_min
+
+        frame = render_frame_on_image(events[i].cpu(), ann, image) 
+        outname = f'./targetframes/{str(total_seen).zfill(5)}_{prefix}_b{bn}_{str(i).zfill(3)}'
+        cv2.imwrite(outname+'.png', frame)
+
+    return torch.Tensor(targets)
+
+
+def calc_iou_individual(pred_box, gt_box):
+    """Calculate IoU of single predicted and ground truth box
+    Args:
+        pred_box (list of floats): location of predicted object as
+            [xmin, ymin, xmax, ymax]
+        gt_box (list of floats): location of ground truth object as
+            [xmin, ymin, xmax, ymax]
+    Returns:
+        float: value of the IoU for the two boxes.
+    Raises:
+        AssertionError: if the box is obviously malformed
+    """
+    x1_t, y1_t, x2_t, y2_t = gt_box
+    x1_p, y1_p, x2_p, y2_p = pred_box
+
+    if (x1_p > x2_p) or (y1_p > y2_p):
+        raise AssertionError(
+            "Prediction box is malformed? pred box: {}".format(pred_box))
+    if (x1_t > x2_t) or (y1_t > y2_t):
+        raise AssertionError(
+            "Ground Truth box is malformed? true box: {}".format(gt_box))
+
+    if (x2_t < x1_p or x2_p < x1_t or y2_t < y1_p or y2_p < y1_t):
+        return 0.0
+
+    far_x = np.min([x2_t, x2_p])
+    near_x = np.max([x1_t, x1_p])
+    far_y = np.min([y2_t, y2_p])
+    near_y = np.max([y1_t, y1_p])
+
+    inter_area = (far_x - near_x + 1) * (far_y - near_y + 1)
+    true_box_area = (x2_t - x1_t + 1) * (y2_t - y1_t + 1)
+    pred_box_area = (x2_p - x1_p + 1) * (y2_p - y1_p + 1)
+    iou = inter_area / (true_box_area + pred_box_area - inter_area)
+    return iou
+
+def get_single_image_results(gt_boxes, pred_boxes, iou_thr):
+    """Calculates number of true_pos, false_pos, false_neg from single batch of boxes.
+    Args:
+        gt_boxes (list of list of floats): list of locations of ground truth
+            objects as [xmin, ymin, xmax, ymax]
+        pred_boxes (dict): dict of dicts of 'boxes' (formatted like `gt_boxes`)
+            and 'scores'
+        iou_thr (float): value of IoU to consider as threshold for a
+            true prediction.
+    Returns:
+        dict: true positives (int), false positives (int), false negatives (int)
+    """
+
+    all_pred_indices = range(len(pred_boxes))
+    all_gt_indices = range(len(gt_boxes))
+    if len(all_pred_indices) == 0:
+        tp = 0
+        fp = 0
+        fn = len(gt_boxes)
+        return {'true_pos': tp, 'false_pos': fp, 'false_neg': fn}
+    if len(all_gt_indices) == 0:
+        tp = 0
+        fp = len(pred_boxes)
+        fn = 0
+        return {'true_pos': tp, 'false_pos': fp, 'false_neg': fn}
+
+    gt_idx_thr = []
+    pred_idx_thr = []
+    ious = []
+    for ipb, pred_box in enumerate(pred_boxes):
+        for igb, gt_box in enumerate(gt_boxes):
+            iou = calc_iou_individual(pred_box, gt_box)
+            if iou > iou_thr:
+                gt_idx_thr.append(igb)
+                pred_idx_thr.append(ipb)
+                ious.append(iou)
+
+    args_desc = np.argsort(ious)[::-1]
+    if len(args_desc) == 0:
+        # No matches
+        tp = 0
+        fp = len(pred_boxes)
+        fn = len(gt_boxes)
+    else:
+        gt_match_idx = []
+        pred_match_idx = []
+        for idx in args_desc:
+            gt_idx = gt_idx_thr[idx]
+            pr_idx = pred_idx_thr[idx]
+            # If the boxes are unmatched, add them to matches
+            if (gt_idx not in gt_match_idx) and (pr_idx not in pred_match_idx):
+                gt_match_idx.append(gt_idx)
+                pred_match_idx.append(pr_idx)
+        tp = len(gt_match_idx)
+        fp = len(pred_boxes) - len(pred_match_idx)
+        fn = len(gt_boxes) - len(gt_match_idx)
+
+    return {'true_pos': tp, 'false_pos': fp, 'false_neg': fn}
+
+
+def calc_precision_recall(img_results):
+    """Calculates precision and recall from the set of images
+    Args:
+        img_results (list): list of dictionary formatted like:
+            [
+                {'true_pos': int, 'false_pos': int, 'false_neg': int},
+                {'true_pos': int, 'false_pos': int, 'false_neg': int},
+                ...
+            ]
+    Returns:
+        tuple: of floats of (precision, recall)
+    """
+    true_pos = 0; false_pos = 0; false_neg = 0
+    for res in img_results:
+        true_pos += res['true_pos']
+        false_pos += res['false_pos']
+        false_neg += res['false_neg']
+
+    try:
+        precision = true_pos/(true_pos + false_pos)
+    except ZeroDivisionError:
+        precision = 0.0
+    try:
+        recall = true_pos/(true_pos + false_neg)
+    except ZeroDivisionError:
+        recall = 0.0
+
+    return (precision, recall)
+
+def plot_pr_curve(
+    precisions, recalls, category='Person', label=None, color=None, ax=None):
+    """Simple plotting helper function"""
+
+    if ax is None:
+        plt.figure(figsize=(10,8))
+        ax = plt.gca()
+
+    if color is None:
+        color = COLORS[0]
+    ax.scatter(recalls, precisions, label=label, s=20, color=color)
+    ax.set_xlabel('recall')
+    ax.set_ylabel('precision')
+    ax.set_title('Precision-Recall curve for {}'.format(category))
+    ax.set_xlim([0.0,1.3])
+    ax.set_ylim([0.0,1.2])
+    return ax
+
+def eval_model(path, prefix, bn):
+    global total_iou
+    global total_seen
+    global dropped
+    global min_seen_iou
+    global res
+
+    anns = np.load(path+'b2/'+prefix+'_tg_b'+str(bn).zfill(2)+'.npy',
+                    allow_pickle=True)
+    events = get_events(path, prefix, bn)
+
+    # TARGET GENERATION METHODOLOGY
+    # FIRST IMAGE ALWAYS IS MARKED AS A 1 to encourage SNN to send more
+    # often than not. The target is then saved. 
+    # If the number of BBs changes? SNN sends
+    # Else, the iou is calciulated from previous send
+    # If it is below a threshold? the SNN sends
+
+    # ANNOTATION FOR PREVIOUSLY DETECTED FRAME
+    ann_p = np.array([-1.0,0,0,0,0,0,0,0], dtype=anns[0].dtype)
+
+    # Send an extra one after switching
+    prev = 1
+
+    # Reset membrane potentials every batch
+    mem1 = torch.zeros(1, 16, 88, 158).to(device)
+    mem2 = torch.zeros(1, 32, 42, 77).to(device)
+    mem3 = torch.zeros(1, 2).to(device)
+
+    for i, ann in enumerate(anns):
+        total_seen += 1
+
+        spk_rec, _, mem1, mem2, mem3 = net(events[i].unsqueeze(0), mem1, mem2, mem3)
+        _, send = spk_rec.sum(dim=0).max(1)
+
+        #if (send == 1):
+        if (send == 1 or (send == 0 and prev == 1)):
+            ann_p = ann
+            total_iou += 1
+
+            x1_p = ann_p['x']
+            y1_p = ann_p['y']
+            x2_p = x1_p + ann_p['w']
+            y2_p = y1_p + ann_p['h']
+            bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+            x1 = ann['x']
+            y1 = ann['y']
+            x2 = x1 + ann['w']
+            y2 = y1 + ann['h']
+            bbox = np.column_stack((x1, y1, x2, y2))
+
+        else:
+
+            x1_p = ann_p['x']
+            y1_p = ann_p['y']
+            x2_p = x1_p + ann_p['w']
+            y2_p = y1_p + ann_p['h']
+            bbox_p = np.column_stack((x1_p, y1_p, x2_p, y2_p))
+
+            x1 = ann['x']
+            y1 = ann['y']
+            x2 = x1 + ann['w']
+            y2 = y1 + ann['h']
+            bbox = np.column_stack((x1, y1, x2, y2))
+
+            (idxs_true, idxs_pred, ious, labels) = match_bboxes(bbox, bbox_p) 
+
+            if len(ious) > 0: 
+                iou_min = np.min(ious)
+            elif ((len(bbox) == 0) and (len(bbox_p) == 0)):
+                iou_min = 1
+            else: 
+                iou_min = min_seen_iou
+
+            total_iou += iou_min
+            dropped += 1
+
+            if (iou_min < min_seen_iou):
+                min_seen_iou = iou_min
+
+        prev = send
+
+        res.append(get_single_image_results(bbox, bbox_p, iou_thr))
+
+
+def iterate_through():
+    for series in test_series:
+        path = data_path+series+'/'
+
+        test_scene_counter = 0
+
+        print(f" Iterating series {series} ".center(50, "#"))
+
+        scenefiles = glob(path+'*_td.h5')
+        random.shuffle(scenefiles)
+        for scenefile in scenefiles:
+            scene = scenefile.replace(path, '').replace('_td.h5', '')
+
+            #if test_scene_counter == 10: break
+
+            print(f" Iterating scene {scene} ".center(50, "#"))
+
+            batch_counter = 0
+
+            batchfiles = glob(path+'b2/'+scene+'_tg_b*.npy')
+            random.shuffle(batchfiles)
+            for batchfile in batchfiles:
+                batch = batchfile.replace(path+'b2/', '').replace('.npy', '')
+                batch = int(batch.replace(scene+'_tg_b', ''))
+
+                if batch_counter == 5: sys.exit()
+
+                print(f" Iterating batch {batch_counter} ({batch}) ".center(50, "#"))
+
+                #test_data = get_events(path, scene, batch)
+                #test_targets = get_targets(path, scene, batch).unsqueeze(1) 
+                eval_visual(path, scene, batch)
+                #eval_model(path, scene, batch)
+                #get_targets_visual(path, scene, batch)
+
+                batch_counter += 1
+
+            test_scene_counter += 1
+
+        print("Precision, recall: ")
+        print(calc_precision_recall(res))
+        print(f"Avg IOU: {total_iou/total_seen}, lowest IOU: {min_seen_iou}")
+        print(f"dropped: {dropped}/{total_seen}={dropped/total_seen:.4f}")
+
+load_pretrained('snn_no_rst_old.pt')
+start = time.time()
+iterate_through()
+end = time.time()
+print(f"Eval took {end-start:.2f} s")
 

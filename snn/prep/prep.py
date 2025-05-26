@@ -10,7 +10,6 @@ import skimage.measure
 sys.settrace
 
 dataset_path = '/data1/fdm/eTraM/Static/HDF5/'
-scene_path = 'train_h5_1/'
 
 test_series = ['test_h5_1', 'test_h5_2']
 train_series = ['train_h5_1', 'train_h5_2', 'train_h5_3', 'train_h5_4',
@@ -38,7 +37,7 @@ class AnnList:
 # SAVING INTO BLOSC FILES FOR FAST TRAINING
 
 # Hyper params
-num_steps = 25
+num_steps = 1
 batch_size = 128
 fps = 30
 names = ["pedestrian", "car", "bicycle", "bus", "motorbike", "truck", "tram",
@@ -238,7 +237,6 @@ def time_bin(beg, end, ev):
     return [events, targets]
 
 ev = EventList()
-path = dataset_path+scene_path
 
 #render_events_and_boxes(0, 500, evlist)
 # Need to get the number of frames in thingy.
@@ -256,8 +254,9 @@ import blosc2
 import os
 
 #for j in range(1,21):
-for series in train_series:
+for series in train_series+test_series:
     path = dataset_path+series+'/'
+    outpath = path+str(num_steps)+'_steps'+'/'
     print(f" LOADING SERIES {series} ".center(50, "#"))
     #if series == 'train_h5_5': continue
     #if series == 'test_h5_1': continue
@@ -266,40 +265,23 @@ for series in train_series:
         if filename.endswith('_td.h5'):
             scene = filename.split('_td.h5')[0]
             set(path, scene, ev)
-            os.makedirs(path+'b2/', exist_ok=True)
+            os.makedirs(outpath+'b2/', exist_ok=True)
             num_frames = int(ev.t[-1]*fps/1e6) 
             for i in range(0, num_frames-batch_size, batch_size):
                 batch_num = int(i/batch_size)
                 print(f"LOADING SCENE {scene}, BATCH {batch_num}")
-                #events, targets = time_bin(i, i+batch_size, ev)
+                events, targets = time_bin(i, i+batch_size, ev)
                 targets = target_bin(i, i+batch_size, ev)
                 #render(events, targets)
 
                 
 
-                #events_outfile = path+'b2/'+scene+'_ev_b'+str(batch_num).zfill(2)+'.b2'
-                targets_outfile = path+'b2/'+scene+'_tg_b'+str(batch_num).zfill(2)+'.npy'
+                events_outfile = outpath+'b2/'+scene+'_ev_b'+str(batch_num).zfill(2)+'.b2'
+                targets_outfile = outpath+'b2/'+scene+'_tg_b'+str(batch_num).zfill(2)+'.npy'
 
-                #blosc2.save_tensor(events, events_outfile, mode='w')
-                #blosc2.save_tensor(targets, targets_outfile, mode='w')
+                blosc2.save_tensor(events, events_outfile, mode='w')
                 np.save(targets_outfile, targets)
             
-                #print(events_outfile)
-                #print(targets_outfile)
-                #events_load = blosc2.load_tensor(events_outfile)
-
-                #targets_load = blosc2.load_tensor(targets_outfile)
-                #tp_load = blosc2.load_tensor(targets_outfile)
-                #targets_load = blosc2.unpack_tensor(tp_load)
-                #targets_load = np.load(targets_outfile, allow_pickle=True)
-
-                #print(targets_load[0].shape)
-                #print(targets_load[0].dtype)
-
-                # print(events_load)
-                # print(targets_load)
-                #if batch_num == 7: sys.exit()
-
 sys.exit()
 
 start = time.perf_counter()
