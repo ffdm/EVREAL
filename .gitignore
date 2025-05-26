@@ -5,3 +5,4 @@ outputs/
 *.pt
 snn/targetframes/
 snn/wandb/
+snn/evalframes/
