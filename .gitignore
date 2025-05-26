@@ -4,3 +4,4 @@
 outputs/
 *.pt
 snn/targetframes/
+snn/wandb/
